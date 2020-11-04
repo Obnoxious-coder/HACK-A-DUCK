@@ -11,4 +11,3 @@ app.add_url_rule('/admin', view_func=admin.admin, methods=['POST'])
 app.add_url_rule('/category', view_func=admin.list_category, methods=['POST', 'GET'])
 
 
-
