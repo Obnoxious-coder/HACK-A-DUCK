@@ -1,11 +1,12 @@
 # HACK-A-DUCK
 
-### Install Flask Dependencies
+### Flask Backend
+##### Install Flask Dependencies
 ```
 $ pip install flask flask-pymongo
 ```
 
-### To Run
+##### To Run
 ```
 $ export FLASK_APP=app.py
 $ export FLASK_DEBUG=1
