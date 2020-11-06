@@ -5,7 +5,7 @@ from app import mongo
 def admin():
     try:
         question = request.get_json()
-        mongo.db.questions.insert({
+        mongo.questions.insert({
             "text": question['text'],
             "category": question['category'],
             "type": question['type'],
@@ -23,11 +23,11 @@ def list_category():
     try:
         if request.method == 'POST':
             category = request.get_json()['category']
-            mongo.db.category.insert({"name": category})
+            mongo.category.insert({"name": category})
             return jsonify({'message': 'success'}), 200
 
         else:
-            category = mongo.db.category.find({})
+            category = mongo.category.find({})
             result = [element['name'] for element in category]
             return jsonify(result), 200
 
