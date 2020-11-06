@@ -6,16 +6,20 @@ import datetime
 
 def quiz():
     try:
-        category = request.get_json["category"]
-        count = mongo.questions.count({"category": category})
+        category = request.get_json()["category"]
+        q = mongo.questions.find({"category": category})
+        questions = []
+        for element in q:
+            element['_id'] = str(element['_id'])
+            questions.append(element)
 
-        if count > 0:
-            session["questions"] = mongo.questions.find({"category": category})
+        if len(questions) > 0:
+            session["questions"] = questions
             session["score"] = 0
-            session["count"] = count
+            session["count"] = len(questions)
             session['answers'] = []
-            session['difficulty'] = 1
-            return jsonify({'message': 'success', 'count': count}), 200
+            session['difficulty'] = min([element['difficulty'] for element in questions])
+            return jsonify({'message': 'success', 'count': len(questions)}), 200
         return jsonify({'message': 'Question does not exist in given category'}), 400
 
     except Exception as e:
@@ -48,45 +52,59 @@ def quiz_id(qid):
 
 
 def submit_quiz():
-    mongo.scores.insert_one({
-        "email": session['user']['email'],
-        "score": session['score'],
-        "time": datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S")
-    })
-    return jsonify({'message': 'success', 'score': session["score"]})
+    try:
+        if len(session['answers']) == 10:
+            mongo.scores.insert_one({
+                "email": session['user']['email'],
+                "score": session['score'],
+                "time": datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+            })
+            return jsonify({'message': 'success', 'score': session["score"]})
+        return jsonify({'message': 'Unauthorized Access'}), 401
+    except Exception as e:
+        print(e)
+        return jsonify({'message': 'error'}), 500
 
 
 def send_question():
-    r = random.randrange(0, session['count'] - 1)
-    while True:
-        question = session['questions'][r]
-        r -= 1
-        if question['difficulty'] == session['difficulty']:
-            break
+    try:
+        r = random.randrange(0, session['count'] - 1)
+        while True:
+            question = session['questions'][r]
+            r -= 1
+            if question['difficulty'] == session['difficulty']:
+                break
 
-    session['questions'].remove(question)
-    session['answers'].append(question['answer'].lower())
-    session['count'] -= 1
+        session['questions'].remove(question)
+        session['answers'].append(question['answer'].lower())
+        session['count'] -= 1
 
-    if question['type'] == 1:
-        return jsonify({
-            'text': question['text'],
-            'type': 1,
-            'options': question['options']
-        })
-    else:
-        return jsonify({
-            'text': question['text'],
-            'type': 2
-        })
+        if question['type'] == 1:
+            return jsonify({
+                'text': question['text'],
+                'type': 1,
+                'options': question['options']
+            })
+        else:
+            return jsonify({
+                'text': question['text'],
+                'type': 2
+            })
+    except IndexError as e:
+        return jsonify({'message': 'No questions'}), 500
+
+    except Exception as e:
+        print(e)
+        return jsonify({'message': 'error'}), 500
 
 
 def next_difficulty(dec: bool):
     d = iter(sorted(set([q['difficulty'] for q in session['questions']]), reverse=dec))
-
+    default = min(d) if dec else max(d)
     try:
         while True:
-            if next(d) > session['difficulty']:
-                return d
+            t = next(d)
+            if (t > session['difficulty'] and not dec) or (t < session['difficulty'] and dec):
+                return t
     except StopIteration as e:
-        return max(d) if dec else min(d)
+        return default

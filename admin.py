@@ -5,13 +5,24 @@ from app import mongo
 def admin():
     try:
         question = request.get_json()
-        mongo.questions.insert({
-            "text": question['text'],
-            "category": question['category'],
-            "type": question['type'],
-            "difficulty": question['difficulty'],
-            "answer": question['answer']
-        })
+        q_type = question['type']
+        if q_type == 2:
+            mongo.questions.insert({
+                "text": question['text'],
+                "category": question['category'],
+                "type": question['type'],
+                "difficulty": question['difficulty'],
+                "answer": question['answer']
+            })
+        else:
+            mongo.questions.insert({
+                "text": question['text'],
+                "category": question['category'],
+                "type": question['type'],
+                "difficulty": question['difficulty'],
+                "answer": question['answer'],
+                "options": question['options']
+            })
         return jsonify({'message': 'success'}), 200
 
     except Exception as e:
