@@ -19,6 +19,7 @@ app.add_url_rule('/category', view_func=admin.list_category, methods=['POST', 'G
 import profile
 app.add_url_rule('/profile', view_func=profile.profile, methods=['GET'])
 app.add_url_rule('/leaderboard', view_func=profile.leader_board, methods=['GET'])
+app.add_url_rule('/scores', view_func=profile.score, methods=['GET'])
 
 
 import user
