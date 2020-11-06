@@ -5,7 +5,7 @@ from app import mongo, bcrypt
 def register():
     try:
         user = {
-            "name": request.get_json["name"],
+            "name": request.get_json()["name"],
             "email": request.get_json()["email"],
             "password": bcrypt.generate_password_hash(request.get_json()["password"]),
             "is_admin": False,
@@ -14,8 +14,7 @@ def register():
         if mongo.users.find_one({"email": user["email"]}):
             return jsonify({"message": "User already exits"}), 400
         if mongo.users.insert_one(user):
-            user['_id'] = str(user['_id'])
-            return jsonify(user), 200
+            return jsonify({'message': 'success'}), 200
         return jsonify({"message": "SignUp failed"}), 400
 
     except Exception as e:
@@ -31,8 +30,9 @@ def login():
 
         if user and bcrypt.check_password_hash(user["password"], password):
             session["logged_in"] = True
+            user['_id'] = str(user['_id'])
             session["user"] = user
-            return jsonify(user), 200
+            return jsonify({'message': 'success'}), 200
         else:
             return jsonify({"message": "Invalid login Credentials"}), 401
     except Exception as e:

@@ -42,8 +42,9 @@ def score():
 		scores = mongo.scores.find({"email": session["user"]["email"]})
 		scores = [element for element in scores]
 		for element in scores:
-			element['_id'] = str(element['_id']
+			element['_id'] = str(element['_id'])
 		return jsonify(scores), 200
+
 	except Exception as e:
 		print(e)
 		return jsonify({'message': 'error'}), 500

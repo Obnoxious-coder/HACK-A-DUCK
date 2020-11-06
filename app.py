@@ -1,10 +1,12 @@
 from flask import Flask
 import pymongo, urllib
 from flask_bcrypt import Bcrypt
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '7a92db426dc5bf58777aa19acdaa2044'
 bcrypt = Bcrypt(app)
+cors = CORS(app)
 
 client = pymongo.MongoClient("mongodb+srv://Jonathan:" + urllib.parse.quote("Jonathan@123") +
                              "@cluster0.naqqj.mongodb.net/QUIZAPP?retryWrites=true&w=majority")
