@@ -1,39 +1,3 @@
-var chart = new Chartist.Pie('.ct-chart', {
-  series: [10, 20, 50, 20, 5, 50, 15],
-  labels: [1, 2, 3, 4, 5, 6, 7]
-}, {
-  donut: true,
-  showLabel: true,
-  
-});
-
-chart.on('draw', function(data) {
-  if(data.type === 'slice') {
-    var pathLength = data.element._node.getTotalLength();
-    data.element.attr({
-      'stroke-dasharray': pathLength + 'px ' + pathLength + 'px'
-    });
-    var animationDefinition = {
-      'stroke-dashoffset': {
-        id: 'anim' + data.index,
-        dur: 1000,
-        from: -pathLength + 'px',
-        to:  '0px',
-        easing: Chartist.Svg.Easing.easeOutQuint,
-        fill: 'freeze'
-      }
-    };
-
-    if(data.index !== 0) {
-      animationDefinition['stroke-dashoffset'].begin = 'anim' + (data.index - 1) + '.end';
-    }
-    data.element.attr({
-      'stroke-dashoffset': -pathLength + 'px'
-    });
-
-    data.element.animate(animationDefinition, false);
-  }
-});
 
 document.getElementById("form0").addEventListener('submit', loginf);
 document.getElementById("form1").addEventListener('submit', registerf);
