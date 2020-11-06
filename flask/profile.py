@@ -1,11 +1,12 @@
-from flask import jsonify, request, session
-from app import  mongo
+from flask import jsonify, session
+from app import mongo
 import operator
+
 
 def profile():
 	try:
 		email = session['user']['email']
-		user = mongo.db.users.find_one({'email':email})
+		user = mongo.users.find_one({'email': email})
 		if user:
 			user['_id'] = str(user['_id'])
 			return jsonify(user), 200
@@ -19,10 +20,15 @@ def profile():
 
 def leader_board():
 	try:
-		data = mongo.db.users.find()
+		data = mongo.scores.aggregate([{
+			"$group": {
+				"_id": "$email",
+				"totalScores": {"$sum": "$score"}
+			}
+		}])
+
 		if data:
-			result = [{"name": d['name'], "score": d['score']} for d in data]
-			result = [element for element in sorted(result, key=operator.itemgetter("age"), reverse=True)]
+			result = [d for d in sorted(data, key=operator.itemgetter('totalScores'), reverse=True)]
 			return jsonify(result), 200
 		return jsonify(list()), 200
 	
