@@ -1,4 +1,3 @@
-
 document.getElementById("form0").addEventListener('submit', loginf);
 document.getElementById("form1").addEventListener('submit', registerf);
 console.log("hi")
@@ -22,8 +21,11 @@ function loginf(e) {
         .then(res => {
         console.log(res)
         if (res.message=="success") {
-            window.location.href = res.url;
+        //   console.log ( res.url+"/"+res.name)
+            // window.location.href = res.url;
+            window.location.replace("http://127.0.0.1:5501/frontend/index.html"+"?name="+res.name); 
             // console.log(res.message)
+
         }
         else {
            if (res.status ===401)

@@ -1,3 +1,8 @@
+const params = new URLSearchParams(window.location.search)
+let name = params.get('name')
+console.log(name)
+document.getElementById("name0").innerHTML = "Hi " + name + "!";
+document.getElementById("name1").innerHTML = "Hi " + name+"!";
 function openNav() {
   document.getElementById("mySidenav").style.width = "250px";
   document.getElementById("main").style.marginLeft = "250px";
@@ -8,6 +13,7 @@ function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
   document.getElementById("main").style.marginLeft = "0";
 }
+
 $("#menuButton").on("click", () => {
   $("#mySidenav").removeClass("d-none");
   $("#mySidenav").addClass("d-flex");
