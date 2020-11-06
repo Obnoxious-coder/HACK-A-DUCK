@@ -6,15 +6,9 @@ def register():#Object of type bytes is not JSON serializable
     try:
         userdata=request.get_json()
         user = {
-<<<<<<< HEAD
-            "name": request.get_json()["name"],
-            "email": request.get_json()["email"],
-            "password": bcrypt.generate_password_hash(request.get_json()["password"]),
-=======
             "name": userdata["name"],
             "email": userdata["email"],
             "password": bcrypt.generate_password_hash(userdata["password"]),
->>>>>>> 7d74ff3040f5ae5943142f32eaf1836f714acf36
             "is_admin": False,
         }
 
