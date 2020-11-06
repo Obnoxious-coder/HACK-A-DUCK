@@ -6,7 +6,16 @@ from flask_cors import CORS
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '7a92db426dc5bf58777aa19acdaa2044'
 bcrypt = Bcrypt(app)
+<<<<<<< HEAD
 cors = CORS(app)
+=======
+CORS(app)
+cors=CORS(app,resources={
+    r"/*":{
+        "origins":"*"
+    }
+})
+>>>>>>> 7d74ff3040f5ae5943142f32eaf1836f714acf36
 
 client = pymongo.MongoClient("mongodb+srv://Jonathan:" + urllib.parse.quote("Jonathan@123") +
                              "@cluster0.naqqj.mongodb.net/QUIZAPP?retryWrites=true&w=majority")
