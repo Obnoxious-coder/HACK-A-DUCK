@@ -99,12 +99,15 @@ def send_question():
 
 
 def next_difficulty(dec: bool):
-    d = iter(sorted(set([q['difficulty'] for q in session['questions']]), reverse=dec))
-    default = min(d) if dec else max(d)
+    d = sorted(set([q['difficulty'] for q in session['questions']]), reverse=dec)
+    current = session['difficulty']
     try:
-        while True:
-            t = next(d)
-            if (t > session['difficulty'] and not dec) or (t < session['difficulty'] and dec):
-                return t
-    except StopIteration as e:
-        return default
+        for i in range(len(d)-1):
+            if d[i] == current:
+                return d[i+1]
+            elif (current > d[i-1] and current < d[i+1]) or (current < d[i-1] and current > d[i+1]):
+                return d[i+1]
+        return d[len(d) - 1]
+        
+    except Exception as e:
+        return d[-1] if len(d) > 0 else 0
