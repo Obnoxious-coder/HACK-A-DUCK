@@ -53,13 +53,14 @@ def quiz_id(qid):
 
 def submit_quiz():
     try:
-        if len(session['answers']) == 10:
-            mongo.scores.insert_one({
-                "email": session['user']['email'],
-                "score": session['score'],
-                "time": datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S")
-            })
-            return jsonify({'message': 'success', 'score': session["score"]})
+       
+        mongo.scores.insert_one({
+            "email": session['user']['email'],
+            "score": session['score'],
+            "time": datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+        })
+        return jsonify({'message': 'success', 'score': session["score"]})       
+            
         return jsonify({'message': 'Unauthorized Access'}), 401
     except Exception as e:
         print(e)
@@ -76,18 +77,21 @@ def send_question():
                 break
 
         session['questions'].remove(question)
-        session['answers'].append(question['answer'].lower())
+        if question['type'] == 2:
+            session['answers'].append(question['answer'].lower())
+        else:
+            session['answers'].append(question['answer']['correct'])
         session['count'] -= 1
 
         if question['type'] == 1:
             return jsonify({
-                'text': question['text'],
+                'text':question["text"],
                 'type': 1,
-                'options': question['options']
+                'option':question["answer"]
             })
         else:
             return jsonify({
-                'text': question['text'],
+                'text':question["text"],
                 'type': 2
             })
     except IndexError as e:
