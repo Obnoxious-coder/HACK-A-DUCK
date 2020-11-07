@@ -53,13 +53,14 @@ def quiz_id(qid):
 
 def submit_quiz():
     try:
-        if len(session['answers']) == 10:
-            mongo.scores.insert_one({
-                "email": session['user']['email'],
-                "score": session['score'],
-                "time": datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S")
-            })
-            return jsonify({'message': 'success', 'score': session["score"]})
+       
+        mongo.scores.insert_one({
+            "email": session['user']['email'],
+            "score": session['score'],
+            "time": datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+        })
+        return jsonify({'message': 'success', 'score': session["score"]})       
+            
         return jsonify({'message': 'Unauthorized Access'}), 401
     except Exception as e:
         print(e)
@@ -76,18 +77,21 @@ def send_question():
                 break
 
         session['questions'].remove(question)
-        session['answers'].append(question['answer'].lower())
+        if question['type'] == 2:
+            session['answers'].append(question['answer'].lower())
+        else:
+            session['answers'].append(question['answer']['correct'])
         session['count'] -= 1
 
         if question['type'] == 1:
             return jsonify({
-                'text': question['text'],
+                'text':question["text"],
                 'type': 1,
-                'options': question['options']
+                'option':question["answer"]
             })
         else:
             return jsonify({
-                'text': question['text'],
+                'text':question["text"],
                 'type': 2
             })
     except IndexError as e:
@@ -99,12 +103,15 @@ def send_question():
 
 
 def next_difficulty(dec: bool):
-    d = iter(sorted(set([q['difficulty'] for q in session['questions']]), reverse=dec))
-    default = min(d) if dec else max(d)
+    d = sorted(set([q['difficulty'] for q in session['questions']]), reverse=dec)
+    current = session['difficulty']
     try:
-        while True:
-            t = next(d)
-            if (t > session['difficulty'] and not dec) or (t < session['difficulty'] and dec):
-                return t
-    except StopIteration as e:
-        return default
+        for i in range(len(d)-1):
+            if d[i] == current:
+                return d[i+1]
+            elif (current > d[i-1] and current < d[i+1]) or (current < d[i-1] and current > d[i+1]):
+                return d[i+1]
+        return d[len(d) - 1]
+        
+    except Exception as e:
+        return d[-1] if len(d) > 0 else 0
