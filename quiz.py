@@ -61,7 +61,6 @@ def submit_quiz():
         })
         return jsonify({'message': 'success', 'score': session["score"]})       
             
-        return jsonify({'message': 'Unauthorized Access'}), 401
     except Exception as e:
         print(e)
         return jsonify({'message': 'error'}), 500
