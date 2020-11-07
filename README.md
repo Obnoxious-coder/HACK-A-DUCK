@@ -1,5 +1,5 @@
 # HACK-A-DUCK
-##Team: 200:success
+## Team: 200:success
 ### Flask Backend
 ##### Install Flask Dependencies
 ```
