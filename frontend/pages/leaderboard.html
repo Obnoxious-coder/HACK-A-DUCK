@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style/leaderboard.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="../assets/css/leaderboard.css" />
+      <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&family=Roboto+Condensed:wght@300&display=swap"
+        rel="stylesheet">
+
+    <title>Leaderboard</title>
+  </head>
+  <body>
+      <div id="menuButton" class="position-absolute border border-dark p-2 m-2 rounded">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div id="mySidenav" class="sidenav d-none d-md-flex flex-column justify-content-around align-items-center ">
+        <a href="#" class="text-right w-100" id="close"><i class="fas fa-times-circle"></i></a>
+        <div class="navbar">
+          <a href="../index.html"><i class="fab fa-discourse" style="margin-right: 5px"></i>Categories</a>
+          <a href="#"><i class="fas fa-chart-pie" style="margin-right: 5px"></i>Overview</a>
+          <a href="#"><i class="far fa-calendar-alt" style="margin-right: 5px"></i>Leaderboard</a>
+          <a href="#"><i class="far fa-comment-alt" style="margin-right: 5px"></i>Chat</a>
+          <a href="#"><i class="fas fa-cog" style="margin-right: 5px"></i>Settings</a>
+        </div>
+        <div class="upgrade p-2 rounded">
+          <p style="font-weight: bold; font-size: medium; color: white;cursor: pointer;">
+            Upgrade<br />
+            plan
+          </p>
+          <p style="font-weight: regular; font-size: small;color: #d15b77;cursor: pointer;">
+            Let's go Pro<i class="fas fa-location-arrow" style="margin-left: 5px"></i>
+          </p>
+        </div>
+      </div>
+      <div id="particles-js"></div>
+    <div class="center" id="main">
+      <h2 style="margin: 30px;">
+        TOP SCORERS</h2>
+        <div class="cards" >
+      <!-- <div class="card">
+        <div class="additional">
+          <div class="user-card" style="display: flex;flex-direction: column;">
+            <div class="level center">Level 13</div>
+            <div class="points center">5,312 Points</div>
+            <img src="profile.png" alt="" srcset="" style="margin: 15px;border-radius: 50%;height: 40%;">
+          </div>
+          <div class="more-info" style="display: flex;flex-direction: column;">
+            <h1>Jane Doe</h1>
+            <div class="coords">
+              <span>Group Name</span>
+              <span>Joined January 2019</span>
+            </div>
+            <div class="coords">
+              <span>Position/Role</span>
+              <span>City, Country</span>
+            </div>
+            <div class="stats" style="display: flex;flex-wrap: wrap;">
+              <div>
+                <div class="title">Awards</div>
+                <i class="fa fa-trophy"></i>
+                <div class="value">2</div>
+              </div>
+              <div>
+                <div class="title">Matches</div>
+                <i class="fa fa-gamepad"></i>
+                <div class="value">27</div>
+              </div>
+              <div>
+                <div class="title">Pals</div>
+                <i class="fa fa-group"></i>
+                <div class="value">123</div>
+              </div>
+              <div>
+                <div class="title">Coffee</div>
+                <i class="fa fa-coffee"></i>
+                <div class="value infinity">∞</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="general">
+          <h1>Jane Doe</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a
+            volutpat mauris, at molestie lacus. Nam vestibulum sodales odio ut
+            pulvinar.
+          </p>
+          <span class="more">Mouse over the card for more info</span>
+        </div>
+      </div> -->
+<div class="card border-primary mb-3" style="max-width: 25rem;">
+  <div class="card-header" >Neha Parmar</div>
+  <div class="card-body text-primary">
+    <h5 class="card-title">Primary card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <div class="stats" style="display: flex;flex-wrap: wrap;margin: 10px;">
+      <div>
+        <div class="title" style="margin-left: 10px;margin-right: 10px;">Awards</div>
+        <i class="fa fa-trophy" style="margin-left: 10px;margin-right: 10px;"></i>
+        <div class="value" style="margin-left: 10px;margin-right: 10px;">2</div>
+      </div>
+      <div>
+        <div class="title" style="margin-left: 10px;margin-right: 10px;">Matches</div>
+        <i class="fa fa-gamepad" style="margin-left: 10px;margin-right: 10px;"></i>
+        <div class="value" style="margin-left: 10px;margin-right: 10px;">27</div>
+      </div>
+      <div>
+        <div class="title">Pals</div>
+        <i class="fa fa-group"></i>
+        <div class="value" style="margin-left: 10px;margin-right: 10px;">123</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card border-secondary mb-3" style="max-width: 25rem;">
+  <div class="card-header">JD</div>
+  <div class="card-body text-secondary">
+    <h5 class="card-title">Secondary card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
+    </p>
+  </div>
+</div>
+<div class="card border-success mb-3" style="max-width: 25rem;">
+  <div class="card-header">PD</div>
+  <div class="card-body text-success">
+    <h5 class="card-title">Success card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
+    </p>
+  </div>
+</div>
+<div class="card border-danger mb-3" style="max-width: 25rem;">
+  <div class="card-header">KJ</div>
+  <div class="card-body text-danger">
+    <h5 class="card-title">Danger card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
+    </p>
+  </div>
+</div>
+<div class="card border-warning mb-3" style="max-width: 25rem;">
+  <div class="card-header">Header</div>
+  <div class="card-body text-warning">
+    <h5 class="card-title">Warning card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
+    </p>
+  </div>
+</div>
+<div class="card border-info mb-3" style="max-width: 25rem;">
+  <div class="card-header">Header</div>
+  <div class="card-body text-info">
+    <h5 class="card-title">Info card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
+    </p>
+  </div>
+</div>
+<div class="card border-light mb-3" style="max-width: 25rem;">
+  <div class="card-header">Header</div>
+  <div class="card-body">
+    <h5 class="card-title">Light card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
+    </p>
+  </div>
+</div>
+<div class="card border-dark mb-3" style="max-width: 25rem;">
+  <div class="card-header">Header</div>
+  <div class="card-body text-dark">
+    <h5 class="card-title">Dark card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
+    </p>
+  </div>
+</div>
+    </div></div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+ <script src="../assets/js/nav.js"></script>
+  <script src="../assets/js/leaderboard.js"></script>
+ <script src="../assets/js/particles.js"></script>
+<script src="../assets/js/app.js"></script>
+  </body>
+</html>

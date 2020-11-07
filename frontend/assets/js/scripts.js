@@ -1,31 +1,19 @@
 const params = new URLSearchParams(window.location.search)
 let name = params.get('name')
-console.log(name)
 document.getElementById("name0").innerHTML = "Hi " + name + "!";
-document.getElementById("name1").innerHTML = "Hi " + name+"!";
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-  document.getElementById("main").style.marginLeft = "250px";
-}
+document.getElementById("name1").innerHTML = "Hi " + name + "!";
+let email = params.get('email')
+console.log(email)
+// fetch("http://127.0.0.1:5000/quiz", {method: "GET"})
+//   .then(res => {
+//     if(res.status===500)
+//       document.getElementById("score").innerHTML ="You have not taken any quiz"+`<h4 style="color:white">Score=0</h4>`;
+//     else
+//       document.getElementById("score").innerHTML ="Your Score is"+`res.json().score`;
+//   })
+//   .catch(error => console.error('Error:', error));
 
-/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-  document.getElementById("main").style.marginLeft = "0";
-}
 
-$("#menuButton").on("click", () => {
-  $("#mySidenav").removeClass("d-none");
-  $("#mySidenav").addClass("d-flex");
-  $("body").css("overflow", "hidden");
-  $("#menuButton").hide();
-});
-$("#close").on("click", () => {
-  $("#mySidenav").removeClass("d-flex");
-  $("#mySidenav").addClass("d-none");
-  $("body").css("overflow", "auto");
-  $("#menuButton").show();
-});
 
 var chart = new Chartist.Pie('.ct-chart', {
   series: [10, 20, 50, 20, 5, 50, 15],

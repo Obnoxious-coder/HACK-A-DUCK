@@ -5,11 +5,10 @@ import operator
 
 def profile():
 	try:
-		email = session['user']['email']
-		user = mongo.users.find_one({'email': email})
+		user = mongo.users.find_one({'email': session['user']['email']})
 		if user:
 			user['_id'] = str(user['_id'])
-			return jsonify(user), 200
+			return jsonify({"name":user["name"],"email":user["email"]}), 200
 
 		return jsonify({'message': 'User Not Found'}), 404
 	
@@ -43,7 +42,8 @@ def score():
 		scores = [element for element in scores]
 		for element in scores:
 			element['_id'] = str(element['_id'])
-		return jsonify(scores), 200
+		print("xyz")
+		return jsonify({"score":0}), 200
 
 	except Exception as e:
 		print(e)

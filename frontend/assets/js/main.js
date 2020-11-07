@@ -23,7 +23,7 @@ function loginf(e) {
         if (res.message=="success") {
         //   console.log ( res.url+"/"+res.name)
             // window.location.href = res.url;
-            window.location.replace("http://127.0.0.1:5501/frontend/index.html"+"?name="+res.name); 
+            window.location.replace("http://127.0.0.1:5501/frontend/index.html"+"?name="+res.name+"&email="+res.email); 
             // console.log(res.message)
 
         }
