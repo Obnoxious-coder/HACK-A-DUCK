@@ -1,33 +1,35 @@
-from flask import request, jsonify
+from flask import request, jsonify, session
 from app import mongo
 
 
 def admin():
     try:
-        question = request.get_json()
-        q_type = question['type']
-        if q_type == 2:
-            mongo.questions.insert({
-                "text": question['text'],
-                "category": question['category'],
-                "type": question['type'],
-                "difficulty": question['difficulty'],
-                "answer": question['answer']
-            })
-        else:
-            mongo.questions.insert({
-                "text": question['text'],
-                "category": question['category'],
-                "type": question['type'],
-                "difficulty": question['difficulty'],
-                "answer": question['answer'],
-                "options": question['options']
-            })
-        return jsonify({'message': 'success'}), 200
+        if session['user']['is_admin']:
+            question = request.get_json()
+            q_type = question['type']
+            if q_type == 2:
+                mongo.questions.insert({
+                    "text": question['text'],
+                    "category": question['category'],
+                    "type": question['type'],
+                    "difficulty": question['difficulty'],
+                    "answer": question['answer']
+                })
+            else:
+                mongo.questions.insert({
+                    "text": question['text'],
+                    "category": question['category'],
+                    "type": question['type'],
+                    "difficulty": question['difficulty'],
+                    "answer": question['answer'],
+                    "options": question['options']
+                })
+            return jsonify({'message': 'success'}), 200
+        return jsonify({'message': 'Page not Found'}), 404
 
     except Exception as e:
         print(e)
-        return jsonify({'message': 'error'}), 500
+        return jsonify({'message': 'Page Not Found'}), 404
 
 
 def list_category():
