@@ -35,6 +35,6 @@ app.add_url_rule('/login', view_func=user.login, methods=['POST'])
 app.add_url_rule('/signout', view_func=user.sign_out, methods=['GET'])
 
 import quiz
-app.add_url_rule('/quiz', view_func=quiz.quiz, methods=['GET'])
+app.add_url_rule('/quiz', view_func=quiz.quiz, methods=['POST'])
 app.add_url_rule('/quiz/<int:qid>', view_func=quiz.quiz_id, methods=['POST', 'GET'])
 app.add_url_rule('/quiz/submit', view_func=quiz.submit_quiz, methods=['GET'])
