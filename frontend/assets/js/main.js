@@ -6,6 +6,7 @@ function loginf(e) {
     let email = document.getElementById("login-email").value;
     let pwd = document.getElementById("login-password").value;
     // var formData=new FormData(document.getElementById("form0"))
+
     fetch("http://127.0.0.1:5000/login", {
         method: "POST",
         headers: {

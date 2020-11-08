@@ -13,7 +13,28 @@ console.log(email)
 //   })
 //   .catch(error => console.error('Error:', error));
 
-
+// $.ajax({
+//     url:'http://127.0.0.1:5000/category',
+//   success: (data) => {
+//          let output=""
+//     data.forEach(function (data) {
+//       output += `
+//        <div class="card d-flex flex-column p-4 col-12 m-2" style="background-color: #e76f51;">
+//                     <header class="card-header">
+//                         <h2>${data}</h2>
+//                     </header>
+//                     <p id="p">Tags:</p>
+//                     <div class="tags">
+//                         <a href="#">pol</a>
+//                         <a href="#">gk</a>
+//                         <a href="#">iq</a>
+//                     </div>
+//                 </div>
+//         `
+//     });
+//     document.getElementById('cardd').innerHTML=output
+//     }
+// })
 
 var chart = new Chartist.Pie('.ct-chart', {
   series: [10, 20, 50, 20, 5, 50, 15],
