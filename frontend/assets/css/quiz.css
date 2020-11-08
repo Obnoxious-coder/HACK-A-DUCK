@@ -1,0 +1,13 @@
+#quiz {
+  min-height: 100vh !important;
+}
+@media only screen and (min-width: 720px) {
+  #quiz {
+    width: calc(100vw - 300px);
+    float: right;
+  }
+}
+.option:hover {
+  background-color: gray !important;
+  color: black !important;
+}
