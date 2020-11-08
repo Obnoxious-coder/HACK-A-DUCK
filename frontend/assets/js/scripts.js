@@ -12,25 +12,47 @@ console.log(email)
 //       document.getElementById("score").innerHTML ="Your Score is"+`res.json().score`;
 //   })
 //   .catch(error => console.error('Error:', error));
+
 // $.ajax({
-//   type:'POST',
-//   url:'http://127.0.0.1:5000/scores',
-//   data:{
-//     'email':email,
-//   },
-//   headers:{
-//     "Content-Type": 'application/json',
-//   },
-//   success:(res)=>{
-//     console.log(res)
-//   }
+//     url:'http://127.0.0.1:5000/category',
+//   success: (data) => {
+//          let output=""
+//     data.forEach(function (data) {
+//       output += `
+//        <div class="card d-flex flex-column p-4 col-12 m-2" style="background-color: #e76f51;">
+//                     <header class="card-header">
+//                         <h2>${data}</h2>
+//                     </header>
+//                     <p id="p">Tags:</p>
+//                     <div class="tags">
+//                         <a href="#">pol</a>
+//                         <a href="#">gk</a>
+//                         <a href="#">iq</a>
+//                     </div>
+//                 </div>
+//         `
+//     });
+//     document.getElementById('cardd').innerHTML=output
+//     }
 // })
-fetch("http://127.0.0.1:5000/scores",{method:"POST", headers: {
-  "Accept": "application/json,*/*",
-  "Content-Type": "application/json"
-},body: JSON.stringify({
-  email: email,
-})})
+
+fetch("http://127.0.0.1:5000/scores", {
+  method: "POST", headers: {
+    "Accept": "application/json,*/*",
+    "Content-Type": "application/json"
+  }, body: JSON.stringify({
+    email: email,
+  })
+})
+  .then(res => res.json())
+  .then(res => {
+    if (res.score === 0)
+      document.getElementById("score").innerHTML ="You have not played any quiz YET"+`<h4>Highest Score: 0</h4>`
+      else
+    document.getElementById("score").innerHTML = "Highest Score: " + res.score;
+  })
+  .catch(err=>console.log(err))
+
 
 var chart = new Chartist.Pie('.ct-chart', {
   series: [10, 20, 50, 20, 5, 50, 15],
@@ -83,23 +105,3 @@ chart.on('draw', function(data) {
 // })
 
 
-// // For the sake of the example we update the chart every time it's created with a delay of 8 seconds
-// chart.on('created', function() {
-//   if(window.__anim21278907124) {
-//     clearTimeout(window.__anim21278907124);
-//     window.__anim21278907124 = null;
-//   }
-//   window.__anim21278907124 = setTimeout(chart.update.bind(chart), 10000);
-// });
-
-// var data = {
-//   series: [5, 3, 4]
-// };
-
-// var sum = function(a, b) { return a + b };
-
-// new Chartist.Pie('.ct-chart', data, {
-//   labelInterpolationFnc: function(value) {
-//     return Math.round(value / data.series.reduce(sum) * 100) + '%';
-//   }
-// });
