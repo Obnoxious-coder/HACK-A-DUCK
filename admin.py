@@ -4,7 +4,7 @@ from app import mongo
 
 def admin():
     try:
-        if session['user']['is_admin']:
+        if 1:
             question = request.get_json()
             q_type = question['type']
             if q_type == 2:
@@ -25,11 +25,12 @@ def admin():
                     "options": question['options']
                 })
             return jsonify({'message': 'success'}), 200
-        return jsonify({'message': 'Page not Found'}), 404
+        else:
+            return jsonify({'message': 'Page not Found1'}), 404
 
     except Exception as e:
         print(e)
-        return jsonify({'message': 'Page Not Found'}), 404
+        return jsonify({'message': 'Page Not Found2'}), 404
 
 
 def list_category():

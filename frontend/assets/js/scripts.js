@@ -1,9 +1,9 @@
-const params = new URLSearchParams(window.location.search)
-let name = params.get('name')
+const params = new URLSearchParams(window.location.search);
+let name = params.get("name");
 document.getElementById("name0").innerHTML = "Hi " + name + "!";
 document.getElementById("name1").innerHTML = "Hi " + name + "!";
-let email = params.get('email')
-console.log(email)
+let email = params.get("email");
+console.log(email);
 // fetch("http://127.0.0.1:5000/quiz", {method: "GET"})
 //   .then(res => {
 //     if(res.status===500)
@@ -13,78 +13,103 @@ console.log(email)
 //   })
 //   .catch(error => console.error('Error:', error));
 
-// $.ajax({
-//     url:'http://127.0.0.1:5000/category',
-//   success: (data) => {
-//          let output=""
-//     data.forEach(function (data) {
-//       output += `
-//        <div class="card d-flex flex-column p-4 col-12 m-2" style="background-color: #e76f51;">
-//                     <header class="card-header">
-//                         <h2>${data}</h2>
-//                     </header>
-//                     <p id="p">Tags:</p>
-//                     <div class="tags">
-//                         <a href="#">pol</a>
-//                         <a href="#">gk</a>
-//                         <a href="#">iq</a>
-//                     </div>
-//                 </div>
-//         `
-//     });
-//     document.getElementById('cardd').innerHTML=output
-//     }
-// })
+$.ajax({
+  url: "http://127.0.0.1:5000/category",
+  success: (data) => {
+    var i = 0;
+    var color = "";
+    let output = "";
 
-fetch("http://127.0.0.1:5000/scores", {
-  method: "POST", headers: {
-    "Accept": "application/json,*/*",
-    "Content-Type": "application/json"
-  }, body: JSON.stringify({
-    email: email,
-  })
-})
-  .then(res => res.json())
-  .then(res => {
-    if (res.score === 0)
-      document.getElementById("score").innerHTML ="You have not played any quiz YET"+`<h4>Highest Score: 0</h4>`
-      else
-    document.getElementById("score").innerHTML = "Highest Score: " + res.score;
-  })
-  .catch(err=>console.log(err))
+    // #e9c46a;#277da1;#f4a261; #90be6d;#f3722c
 
-
-var chart = new Chartist.Pie('.ct-chart', {
-  series: [10, 20, 50, 20, 5, 50, 15],
-  labels: [1, 2, 3, 4, 5, 6, 7]
-}, {
-  donut: true,
-  showLabel: true,
-  
+    data.forEach(function (data) {
+      if (i % 5 == 0) {
+        color = " #e9c46a";
+      } else if (i % 5 == 1) {
+        color = "#277da1";
+      } else if (i % 5 == 2) {
+        color = "#f4a261";
+      } else if (i % 5 == 3) {
+        color = "#90be6d";
+      } else if (i % 5 == 4) {
+        color = "#f3722c";
+      }
+      // <p id="p">Tags:</p>
+      //               <div class="tags">
+      //                   <a href="#">pol</a>
+      //                   <a href="#">gk</a>
+      //                   <a href="#">iq</a>
+      //               </div>
+      output += `
+       <div class="card d-flex flex-column p-4 col-12 m-2" style="background-color: ${color}">
+                    <header class="card-header">
+                        <h2>${data}</h2>
+                    </header>
+                    
+                </div>
+        `;
+      i++;
+    });
+    document.getElementById("cardd").innerHTML = output;
+  },
 });
 
-chart.on('draw', function(data) {
-  if(data.type === 'slice') {
+fetch("http://127.0.0.1:5000/scores", {
+  method: "POST",
+  headers: {
+    Accept: "application/json,*/*",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    email: email,
+  }),
+})
+  .then((res) => res.json())
+  .then((res) => {
+    if (res.score === 0)
+      document.getElementById("score").innerHTML =
+        "You have not played any quiz YET" + `<h4>Highest Score: 0</h4>`;
+    else
+      document.getElementById("score").innerHTML =
+        "Highest Score: " + res.score;
+  })
+  .catch((err) => console.log(err));
+
+var chart = new Chartist.Pie(
+  ".ct-chart",
+  {
+    series: [10, 20, 50, 20, 5, 50, 15],
+    labels: [1, 2, 3, 4, 5, 6, 7],
+  },
+  {
+    donut: true,
+    showLabel: true,
+  }
+);
+
+chart.on("draw", function (data) {
+  if (data.type === "slice") {
     var pathLength = data.element._node.getTotalLength();
     data.element.attr({
-      'stroke-dasharray': pathLength + 'px ' + pathLength + 'px'
+      "stroke-dasharray": pathLength + "px " + pathLength + "px",
     });
     var animationDefinition = {
-      'stroke-dashoffset': {
-        id: 'anim' + data.index,
+      "stroke-dashoffset": {
+        id: "anim" + data.index,
         dur: 1000,
-        from: -pathLength + 'px',
-        to:  '0px',
+        from: -pathLength + "px",
+        to: "0px",
         easing: Chartist.Svg.Easing.easeOutQuint,
-        fill: 'freeze'
-      }
+        fill: "freeze",
+      },
     };
 
-    if(data.index !== 0) {
-      animationDefinition['stroke-dashoffset'].begin = 'anim' + (data.index - 1) + '.end';
+    if (data.index !== 0) {
+      animationDefinition["stroke-dashoffset"].begin =
+        "anim" + (data.index - 1) + ".end";
     }
     data.element.attr({
-      'stroke-dashoffset': -pathLength + 'px'
+      "stroke-dashoffset": -pathLength + "px",
     });
 
     data.element.animate(animationDefinition, false);
@@ -99,9 +124,7 @@ chart.on('draw', function(data) {
 // // }, {
 // //   donut: true,
 // //   showLabel: true,
-  
+
 // // });
 
 // })
-
-
