@@ -13,11 +13,11 @@ So what are you waiting for? :star_struck:
 <h2>To run the backend https://fierce-falls-42057.herokuapp.com</h2>
 
 <h4>To run on local server, clone the repo and run the following commands</h4>
-### Flask Backend
-##### Install Flask Dependencies
-```
+### Flask Backend <br />
+##### Install Flask Dependencies<br />
+```<br />
 $ pip install flask flask-pymongo
-```
+```<br />
 
 ##### To Run
 ```
