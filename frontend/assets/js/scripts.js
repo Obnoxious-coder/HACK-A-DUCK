@@ -12,8 +12,25 @@ console.log(email)
 //       document.getElementById("score").innerHTML ="Your Score is"+`res.json().score`;
 //   })
 //   .catch(error => console.error('Error:', error));
-
-
+// $.ajax({
+//   type:'POST',
+//   url:'http://127.0.0.1:5000/scores',
+//   data:{
+//     'email':email,
+//   },
+//   headers:{
+//     "Content-Type": 'application/json',
+//   },
+//   success:(res)=>{
+//     console.log(res)
+//   }
+// })
+fetch("http://127.0.0.1:5000/scores",{method:"POST", headers: {
+  "Accept": "application/json,*/*",
+  "Content-Type": "application/json"
+},body: JSON.stringify({
+  email: email,
+})})
 
 var chart = new Chartist.Pie('.ct-chart', {
   series: [10, 20, 50, 20, 5, 50, 15],

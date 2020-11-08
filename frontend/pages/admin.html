@@ -36,7 +36,9 @@
           name="categoryDropdown"
           class="col-8 col-md-6 p-2 rounded"
           id="categoryDropdown"
-        ></select>
+        >
+      <option value="0">---Please Select a Category---</option>
+      </select>
         <i class="fas fa-plus-square m-1 ml-2 fs-22 cursorPointer"></i>
       </div>
       <div
@@ -124,14 +126,16 @@
         />
       </div>
       <div class="d-flex justify-content-center m-2 col-12">
-        <button class="col-12 col-md-6 btn btn-outline-primary">
+        <button class="col-12 col-md-6 btn btn-outline-primary" id="sumbitQuestion">
           Submit Question
         </button>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="../assets/js/scripts.js"></script>
+    <script src="../assets/js/admin.js"></script>
   </body>
 </html>

@@ -26,7 +26,7 @@ app.add_url_rule('/category', view_func=admin.list_category, methods=['POST', 'G
 import profile
 app.add_url_rule('/profile', view_func=profile.profile, methods=['GET'])
 app.add_url_rule('/leaderboard', view_func=profile.leader_board, methods=['GET'])
-app.add_url_rule('/scores', view_func=profile.score, methods=['GET'])
+app.add_url_rule('/scores', view_func=profile.score, methods=['POST'])
 
 
 import user
@@ -38,3 +38,8 @@ import quiz
 app.add_url_rule('/quiz', view_func=quiz.quiz, methods=['POST'])
 app.add_url_rule('/quiz/<int:qid>', view_func=quiz.quiz_id, methods=['POST', 'GET'])
 app.add_url_rule('/quiz/submit', view_func=quiz.submit_quiz, methods=['GET'])
+
+
+#quiz->category
+#second wale me question number jayega
+#third wale me submit ho jaega

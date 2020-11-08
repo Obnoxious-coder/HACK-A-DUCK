@@ -1,4 +1,4 @@
-from flask import jsonify, session
+from flask import jsonify, session, request
 from app import mongo
 import operator
 
@@ -38,7 +38,8 @@ def leader_board():
 
 def score():
 	try:
-		scores = mongo.scores.find({"email": session["user"]["email"]})
+		email=request.get_json()['email']
+		scores = mongo.scores.find({"email": email})
 		scores = [element for element in scores]
 		for element in scores:
 			element['_id'] = str(element['_id'])
