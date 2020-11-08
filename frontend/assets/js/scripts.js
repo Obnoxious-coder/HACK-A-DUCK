@@ -35,25 +35,24 @@ console.log(email)
 //     document.getElementById('cardd').innerHTML=output
 //     }
 // })
-$.ajax({
-  type:'POST',
-  url:'http://127.0.0.1:5000/scores',
-  data:{
-    'email':email,
-  },
-  headers:{
-    "Content-Type": 'application/json',
-  },
-  success:(res)=>{
-    console.log(res)
-  }
+
+fetch("http://127.0.0.1:5000/scores", {
+  method: "POST", headers: {
+    "Accept": "application/json,*/*",
+    "Content-Type": "application/json"
+  }, body: JSON.stringify({
+    email: email,
+  })
 })
-// fetch("http://127.0.0.1:5000/scores",{method:"POST", headers: {
-//   "Accept": "application/json,*/*",
-//   "Content-Type": "application/json"
-// },body: JSON.stringify({
-//   email: email,
-// })})
+  .then(res => res.json())
+  .then(res => {
+    if (res.score === 0)
+      document.getElementById("score").innerHTML ="You have not played any quiz YET"+`<h4>Highest Score: 0</h4>`
+      else
+    document.getElementById("score").innerHTML = "Highest Score: " + res.score;
+  })
+  .catch(err=>console.log(err))
+
 
 var chart = new Chartist.Pie('.ct-chart', {
   series: [10, 20, 50, 20, 5, 50, 15],

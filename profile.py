@@ -43,8 +43,7 @@ def score():
 		scores = [element for element in scores]
 		for element in scores:
 			element['_id'] = str(element['_id'])
-		print("xyz")
-		return jsonify({"score":0}), 200
+		return jsonify({"score":scores}), 200
 
 	except Exception as e:
 		print(e)
