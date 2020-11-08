@@ -29,30 +29,56 @@
   </head>
   <body>
     <div
-      class="d-flex flex-column p-0 p-md-5 my-5 mx-2 container w-auto mx-md-auto border border-primary rounded"
+      class="d-flex flex-column p-0 p-md-5 my-5 mx-2 container w-auto mx-md-auto rounded"
     >
-      <div class="d-flex justify-content-center align-items-center m-2 col-12">
+      <div
+        class="d-flex justify-content-center align-items-center flex-wrap m-2 col-12"
+      >
         <select
           name="categoryDropdown"
           class="col-8 col-md-6 p-2 rounded"
           id="categoryDropdown"
         >
-      <option value="0">---Please Select a Category---</option>
-      </select>
-        <i class="fas fa-plus-square m-1 ml-2 fs-22 cursorPointer"></i>
+          <option value="0">---Please Select a Category---</option>
+        </select>
+        <i
+          class="fas fa-plus-square m-1 ml-2 fs-22 cursorPointer"
+          id="addCategoryButton"
+        ></i>
+        <div
+          class="w-100 fs-12 text-danger text-center"
+          id="categoryDropdownError"
+        ></div>
       </div>
       <div
-        class="d-flex justify-content-center m-2 col-12"
+        class="d-flex justify-content-center align-items-center m-2 flex-wrap col-12"
         id="addCategoryInput"
+        style="display: none !important"
       >
         <input
           type="text"
           class="col-8 col-md-6 p-2 rounded"
           placeholder="Add Category Here..."
+          id="newCategory"
         />
-        <button class="btn btn-outline-primary col-3 col-md-1 m-1">Add</button>
+
+        <button
+          class="btn btn-outline-primary col-3 col-md-1 m-1"
+          id="addNewCategoryButton"
+        >
+          Add
+        </button>
+        <div class="loader" id="addCategoryLoader" style="display: none"></div>
+        <i
+          class="fas fa-minus-square m-1 fs-22 cursorPointer"
+          id="removeCategoryInput"
+        ></i>
+        <div
+          class="w-100 fs-12 text-danger text-center"
+          id="addCategoryInputError"
+        ></div>
       </div>
-      <div class="row justify-content-center m-2 col-12" id="tagRow">
+      <!-- <div class="row justify-content-center m-2 col-12" id="tagRow">
         <span class="circle p-3 border m-1 rounded cursorPointer"
           >historical</span
         >
@@ -64,69 +90,97 @@
           >personalities</span
         >
         <span class="circle p-3 border m-1 rounded cursorPointer">stuff</span>
-      </div>
-      <div class="d-flex justify-content-center m-2 col-12">
+      </div> -->
+      <div class="d-flex justify-content-center flex-wrap m-2 col-12">
         <input
           type="text"
           class="col-12 col-md-6 p-2 rounded"
           placeholder="Add Question Here..."
+          id="questionText"
         />
+        <div
+          class="w-100 fs-12 text-danger text-center"
+          id="questionTextError"
+        ></div>
       </div>
-      <div class="d-flex justify-content-center m-2 col-12">
+      <div class="d-flex justify-content-center flex-wrap m-2 col-12">
         <select
           name="typeDropdown"
           class="col-12 col-md-6 p-2 rounded"
           id="typeDropdown"
         >
           <option value="">Select the type of question</option>
-          <option value="0">MCQ</option>
-          <option value="1">One Work Answer</option>
+          <option value="1">MCQ</option>
+          <option value="2">One Word Answer</option>
         </select>
+        <div
+          class="w-100 fs-12 text-danger text-center"
+          id="typeDropdownError"
+        ></div>
       </div>
       <div
-        class="row justify-content-center align-items-center m-2 col-12"
+        class="row justify-content-center align-items-center flex-wrap m-2 col-12"
         id="mcqOptions"
+        style="display: none"
       >
         <input
           type="text"
-          class="col-4 col-md-2 m-1 p-2 rounded"
+          class="col-4 col-md-2 m-1 p-2 rounded option"
           placeholder="Option 1"
         />
         <input
           type="text"
-          class="col-4 col-md-2 m-1 p-2 rounded"
+          class="col-4 col-md-2 m-1 p-2 rounded option"
           placeholder="Option 2"
         />
         <input
           type="text"
-          class="col-4 col-md-2 m-1 p-2 rounded"
+          class="col-4 col-md-2 m-1 p-2 rounded option"
           placeholder="Option 3"
         />
         <input
           type="text"
-          class="col-4 col-md-2 m-1 p-2 rounded"
+          class="col-4 col-md-2 m-1 p-2 rounded option"
           placeholder="Option 4"
         />
-      </div>
-      <div class="d-flex justify-content-center m-2 col-12" id="correctAnswer">
-        <input
-          type="text"
-          class="col-12 col-md-6 p-2 rounded"
-          placeholder="Correct Answer"
-        />
+        <div
+          class="w-100 text-danger text-center fs-12"
+          id="mcqOptionsError"
+        ></div>
       </div>
       <div
-        class="d-flex justify-content-center m-2 col-12"
-        id="difficultyLevel"
+        class="d-flex justify-content-center flex-wrap m-2 col-12"
+        id="correctAnswer"
       >
         <input
           type="text"
           class="col-12 col-md-6 p-2 rounded"
+          placeholder="Correct Answer (For MCQ enter 1/2/3/4)"
+        />
+        <div
+          class="w-100 fs-12 text-danger text-center"
+          id="correctAnswerError"
+        ></div>
+      </div>
+      <div
+        class="d-flex justify-content-center flex-wrap m-2 col-12"
+        id="difficultyLevel"
+      >
+        <input
+          type="number"
+          class="col-12 col-md-6 p-2 rounded"
           placeholder="Difficulty Level out of 5"
         />
+        <div
+          class="w-100 fs-12 text-danger text-center"
+          id="difficultyLevelError"
+        ></div>
       </div>
       <div class="d-flex justify-content-center m-2 col-12">
-        <button class="col-12 col-md-6 btn btn-outline-primary" id="sumbitQuestion">
+        <button
+          class="col-12 col-md-6 btn btn-outline-primary"
+          id="sumbitQuestion"
+        >
           Submit Question
         </button>
       </div>
