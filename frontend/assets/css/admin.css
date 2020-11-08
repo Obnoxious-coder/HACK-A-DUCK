@@ -1,0 +1,19 @@
+.fs-22 {
+  font-size: 22px !important;
+}
+select,
+select:active,
+select:focus,
+input:active,
+input,
+input:focus {
+  outline: none;
+  border: 1px solid black;
+}
+select,
+input {
+  background-color: rgb(240, 240, 240);
+}
+.cursorPointer {
+  cursor: pointer;
+}

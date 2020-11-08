@@ -35,6 +35,25 @@ console.log(email)
 //     document.getElementById('cardd').innerHTML=output
 //     }
 // })
+$.ajax({
+  type:'POST',
+  url:'http://127.0.0.1:5000/scores',
+  data:{
+    'email':email,
+  },
+  headers:{
+    "Content-Type": 'application/json',
+  },
+  success:(res)=>{
+    console.log(res)
+  }
+})
+// fetch("http://127.0.0.1:5000/scores",{method:"POST", headers: {
+//   "Accept": "application/json,*/*",
+//   "Content-Type": "application/json"
+// },body: JSON.stringify({
+//   email: email,
+// })})
 
 var chart = new Chartist.Pie('.ct-chart', {
   series: [10, 20, 50, 20, 5, 50, 15],
@@ -87,23 +106,3 @@ chart.on('draw', function(data) {
 // })
 
 
-// // For the sake of the example we update the chart every time it's created with a delay of 8 seconds
-// chart.on('created', function() {
-//   if(window.__anim21278907124) {
-//     clearTimeout(window.__anim21278907124);
-//     window.__anim21278907124 = null;
-//   }
-//   window.__anim21278907124 = setTimeout(chart.update.bind(chart), 10000);
-// });
-
-// var data = {
-//   series: [5, 3, 4]
-// };
-
-// var sum = function(a, b) { return a + b };
-
-// new Chartist.Pie('.ct-chart', data, {
-//   labelInterpolationFnc: function(value) {
-//     return Math.round(value / data.series.reduce(sum) * 100) + '%';
-//   }
-// });
