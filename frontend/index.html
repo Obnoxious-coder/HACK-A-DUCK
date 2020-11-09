@@ -3,301 +3,94 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="./assets/css/login.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&family=Roboto+Condensed:wght@300&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css"
-    />
-    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
-    <link rel="stylesheet" href="../frontend/assets/css/style.css" />
+
+    <title>Document</title>
   </head>
 
   <body>
-    <div
-      id="menuButton"
-      class="position-absolute border border-dark p-2 m-2 rounded"
-    >
-      <i class="fas fa-bars"></i>
-    </div>
-    <div
-      id="mySidenav"
-      class="sidenav d-none d-md-flex flex-column justify-content-around align-items-center"
-    >
-      <a href="#" class="text-right w-100" id="close"
-        ><i class="fas fa-times-circle"></i
-      ></a>
-      <div class="navbar">
-        <h3 id="name0"></h3>
-        <a href="#left"
-          ><i class="fab fa-discourse" style="margin-right: 5px"></i
-          >Categories</a
-        >
-        <a href="#"
-          ><i class="fas fa-chart-pie" style="margin-right: 5px"></i>Overview</a
-        >
-        <a href="./pages/leaderboard.html"
-          ><i class="far fa-calendar-alt" style="margin-right: 5px"></i
-          >Leaderboard</a
-        >
-        <a href="#"
-          ><i class="far fa-comment-alt" style="margin-right: 5px"></i>Chat</a
-        >
-        <a href="#"
-          ><i class="fas fa-cog" style="margin-right: 5px"></i>Settings</a
-        >
-      </div>
-      <div class="upgrade p-2 rounded">
-        <p
-          style="
-            font-weight: bold;
-            font-size: medium;
-            color: white;
-            cursor: pointer;
-          "
-        >
-          Upgrade<br />
-          plan
-        </p>
-        <p
-          style="
-            font-weight: regular;
-            font-size: small;
-            color: #d15b77;
-            cursor: pointer;
-          "
-        >
-          Let's go Pro<i
-            class="fas fa-location-arrow"
-            style="margin-left: 5px"
-          ></i>
-        </p>
-      </div>
-    </div>
-
-    <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
-    <div id="main" class="" style="margin-top: 25px">
-      <div class="left col-12 col-md-5">
-        <h2>CATEGORIES</h2>
-        <!-- <nav class="flat"
-                style="margin-top: 15px;font-weight: bold;display:flex;justify-content: space-around;font-size: large;">
-                <a href="#" style="padding-left: 10px; padding-right: 10px">All</a>
-                <a href="#" style="padding-left: 10px; padding-right: 10px">Active</a>
-                <a href="#" style="padding-left: 10px; padding-right: 10px">Completed</a>
-            </nav> -->
-        <div
-          class="container card-list d-flex flex-column align-items-center"
-          style="margin-left: 0"
-          id="cardd"
-        >
-          <div
-            class="card d-flex flex-column p-4 col-12 m-2"
-            style="background-color: #e76f51"
-          >
-            <header class="card-header">
-              <h2>POLITICS</h2>
-            </header>
-            <p id="p">Tags:</p>
-            <div class="tags">
-              <a href="#">pol</a>
-              <a href="#">gk</a>
-              <a href="#">iq</a>
-            </div>
-          </div>
-          <div
-            class="card d-flex flex-column p-4 col-12 m-2"
-            style="background-color: #02c39a"
-          >
-            <header class="card-header">
-              <h2>Sports</h2>
-            </header>
-            <p id="p">Tags:</p>
-            <div class="tags">
-              <a href="#">html</a>
-              <a href="#">css</a>
-              <a href="#">web-dev</a>
-            </div>
-          </div>
-          <div
-            class="card d-flex flex-column p-4 col-12 m-2"
-            style="background-color: #e9c46a"
-          >
-            <header class="card-header">
-              <h2>Technology</h2>
-            </header>
-            <p id="p">Tags:</p>
-            <div class="tags">
-              <a href="#">html</a>
-              <a href="#">css</a>
-              <a href="#">web-dev</a>
-            </div>
-          </div>
-          <div
-            class="card d-flex flex-column p-4 col-12 m-2"
-            style="background-color: #277da1"
-          >
-            <header class="card-header">
-              <h2>Literature</h2>
-            </header>
-            <p id="p">Tags:</p>
-            <div class="tags">
-              <a href="#">html</a>
-              <a href="#">css</a>
-              <a href="#">web-dev</a>
-            </div>
-          </div>
-          <div
-            class="card d-flex flex-column p-4 col-12 m-2"
-            style="background-color: #f4a261"
-          >
-            <header class="card-header">
-              <h2>Entertainment</h2>
-            </header>
-            <p id="p">Tags:</p>
-            <div class="tags">
-              <a href="#">html</a>
-              <a href="#">css</a>
-              <a href="#">web-dev</a>
-            </div>
-          </div>
-          <div
-            class="card d-flex flex-column p-4 col-12 m-2"
-            style="background-color: #ffca3a"
-          >
-            <header class="card-header">
-              <h2>Geography</h2>
-            </header>
-            <p id="p">Tags:</p>
-            <div class="tags">
-              <a href="#">html</a>
-              <a href="#">css</a>
-              <a href="#">web</a>
-              <a href="#">sdk</a>
-            </div>
-          </div>
-          <div
-            class="card d-flex flex-column p-4 col-12 m-2"
-            style="background-color: #90be6d"
-          >
-            <header class="card-header">
-              <h2>History</h2>
-            </header>
-            <p id="p">Tags:</p>
-            <div class="tags">
-              <a href="#">html</a>
-              <a href="#">css</a>
-              <a href="#">web-dev</a>
-            </div>
-          </div>
-          <div
-            class="card d-flex flex-column p-4 col-12 m-2"
-            style="background-color: #f3722c"
-          >
-            <header class="card-header">
-              <h2>Mythology</h2>
-            </header>
-            <p id="p">Tags:</p>
-            <div class="tags">
-              <a href="#">html</a>
-              <a href="#">css</a>
-              <a href="#">web-dev</a>
-            </div>
-          </div>
-
-          <!-- <div class="card d-flex flex-column p-4 col-12 m-2">
-            <header class="card-header">
-              <p>Sep 11th 2020</p>
-              <h2>Current Affairs</h2>
-            </header>
-            <div class="card-author">
-              <a class="author-avatar" href="#">
-                <img src="./assets/avatar.png" />
-              </a>
-              <svg class="half-circle" viewBox="0 0 106 57">
-                <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
-              </svg>
-              <div class="author-name">
-                <div class="author-name-prefix">Author</div>
-                Jeff Delaney
+    <div class="forms-section">
+      <h1 class="section-title">WELCOME TO ___</h1>
+      <div class="forms">
+        <div class="form-wrapper is-active">
+          <button type="button" class="switcher switcher-login">
+            Login
+            <span class="underline"></span>
+          </button>
+          <form class="form form-login" id="form0">
+            <fieldset>
+              <legend>Please, enter your email and password for login.</legend>
+              <div class="input-block">
+                <label for="login-email">E-mail</label>
+                <input id="login-email" type="text" name="email" required />
               </div>
-            </div>
-            <div class="tags">
-              <a href="#">html</a>
-              <a href="#">css</a>
-              <a href="#">web-dev</a>
-            </div>
-          </div>
-          <div class="card d-flex flex-column p-4 col-12 m-2">
-            <header class="card-header">
-              <p>Sep 11th 2020</p>
-              <h2>Never forget</h2>
-            </header>
-            <div class="card-author">
-              <a class="author-avatar" href="#">
-                <img src="./assets/avatar.png" />
-              </a>
-              <svg class="half-circle" viewBox="0 0 106 57">
-                <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
-              </svg>
-              <div class="author-name">
-                <div class="author-name-prefix">Author</div>
-                Jeff Delaney
+              <div class="input-block">
+                <label for="login-password">Password</label>
+                <input
+                  id="login-password"
+                  type="password"
+                  name="password"
+                  required
+                />
               </div>
-            </div>
-            <div class="tags">
-              <a href="#">html</a>
-              <a href="#">css</a>
-              <a href="#">web-dev</a>
-            </div>
-          </div> -->
+            </fieldset>
+            <h3 id="content1" style="color: black; text-align: center"></h3>
+            <button type="submit" class="btn-login">Login</button>
+          </form>
         </div>
-      </div>
-      <div class="right col-12 col-md-5">
-        <div class="right1">
-          <h3 id="name1"></h3>
-          <h4 id="result">You have completed 5 quizzes</h4>
-          <h4 id="score" style="color: red"></h4>
-          <div class="ct-chart ct-perfect-fourth"></div>
-        </div>
-        <div class="right2">
-          <h2 style="text-align: left">
-            Trending Quizzes
-            <i class="fas fa-long-arrow-alt-down" style="margin-left: 4px"></i>
-          </h2>
+        <div class="form-wrapper">
+          <button type="button" class="switcher switcher-signup">
+            Sign Up
+            <span class="underline"></span>
+          </button>
+          <form class="form form-signup" id="form1">
+            <fieldset>
+              <legend>
+                Please, enter your email, password and password confirmation for
+                sign up.
+              </legend>
+              <div class="input-block">
+                <label for="signup-name">Name</label>
+                <input id="signup-name" type="text" required />
+              </div>
+              <div class="input-block">
+                <label for="signup-email">E-mail</label>
+                <input id="signup-email" type="email" required />
+              </div>
+              <div class="input-block">
+                <label for="signup-password">Password</label>
+                <input id="signup-password" type="password" required />
+              </div>
+              <!-- <div class="input-block">
+                            <label for="signup-password-confirm">Confirm password</label>
+                            <input id="signup-password-confirm" type="password" required>
+                        </div> -->
+            </fieldset>
+            <h3 id="content" style="color: black; text-align: center"></h3>
+            <button type="submit" class="btn-signup">Sign Up</button>
+          </form>
         </div>
       </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <!--    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+      const switchers = [...document.querySelectorAll(".switcher")];
+
+      switchers.forEach((item) => {
+        item.addEventListener("click", function () {
+          switchers.forEach((item) =>
+            item.parentElement.classList.remove("is-active")
+          );
+          this.parentElement.classList.add("is-active");
+        });
+      });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="./assets/js/nav.js"></script>
-    <script src="./assets/js/main.js"></script>
-    <script src="./assets/js/scripts.js"></script>
+    <script src="../frontend/assets/js/main.js"></script>
   </body>
 </html>
