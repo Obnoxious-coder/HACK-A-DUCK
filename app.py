@@ -7,11 +7,12 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '7a92db426dc5bf58777aa19acdaa2044'
 bcrypt = Bcrypt(app)
 CORS(app)
-cors=CORS(app,resources={
-    r"/*":{
-        "origins":"*"
-    }
-})
+# CORS(app, supports_credentials=True)
+# cors=CORS(app,supports_credentials=True,resources={
+#     r"/*":{
+#         "origins":"*"
+#     }
+# })
 
 client = pymongo.MongoClient("mongodb+srv://Jonathan:" + urllib.parse.quote("Jonathan@123") +
                              "@cluster0.naqqj.mongodb.net/QUIZAPP?retryWrites=true&w=majority")
@@ -37,7 +38,7 @@ app.add_url_rule('/signout', view_func=user.sign_out, methods=['GET'])
 import quiz
 app.add_url_rule('/quiz', view_func=quiz.quiz, methods=['POST'])
 app.add_url_rule('/quiz/<int:qid>', view_func=quiz.quiz_id, methods=['POST', 'GET'])
-app.add_url_rule('/quiz/submit', view_func=quiz.submit_quiz, methods=['GET'])
+app.add_url_rule('/quiz/submit', view_func=quiz.submit_quiz, methods=['POST'])
 
 
 #quiz->category

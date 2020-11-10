@@ -2,9 +2,20 @@ from flask import session, request, jsonify, redirect
 from app import mongo
 import random
 import datetime
-
+q=[]
+s=0
+c=0
+cnt=0
+ans=[]
+d=0
 
 def quiz():
+    global q
+    global s
+    global c
+    global cnt
+    global ans
+    global d
     try:
         category = request.get_json()["category"]
         q = mongo.questions.find({"category": category})
@@ -14,12 +25,12 @@ def quiz():
             questions.append(element)
 
         if len(questions) > 0:
-            session["questions"] = questions
-            session["score"] = 0
-            session["count"] = len(questions)
-            session['cnt'] = min(10,len(questions))
-            session['answers'] = []
-            session['difficulty'] = min([element['difficulty'] for element in questions])
+            q = questions
+            s = 0
+            c = len(questions)
+            cnt = min(10,len(questions))
+            ans = []
+            d = min([element['difficulty'] for element in questions])
             return jsonify({'message': 'success', 'count': len(questions)}), 200
         return jsonify({'message': 'Question does not exist in given category'}), 400
 
@@ -29,22 +40,28 @@ def quiz():
 
 
 def quiz_id(qid):
+    global q
+    global s
+    global c
+    global cnt
+    global ans
+    global d
     try:
         if request.method == 'GET':
-            if qid > session['cnt']:
-                return redirect('/quiz/submit')
+            if qid > cnt:
+                return jsonify({'message': 'Max '}), 401
 
-            if (len(session["answers"]) + 1) == qid:
+            if (len(ans) + 1) == qid:
                 return send_question()
             return jsonify({'message': 'Unauthorized access'}), 401
 
         else:
-            if session["answers"][-1].lower() == request.get_json()['answer'].lower():
-                session["score"] += 1
-                session['difficulty'] = next_difficulty(False)
+            if ans[-1].lower() == request.get_json()['answer'].lower():
+                s += 1
+                d = next_difficulty(False)
                 return jsonify({'correct': True})
 
-            session['difficulty'] = next_difficulty(True)
+            d = next_difficulty(True)
             return jsonify({'correct': False})
 
     except Exception as e:
@@ -53,15 +70,21 @@ def quiz_id(qid):
 
 
 def submit_quiz():
+    global q
+    global s
+    global c
+    global cnt
+    global ans
+    global d
     try:
-       
+        email=request.get_json()['email']
         mongo.scores.insert_one({
-            "name":session['user']['name'],
-            "email": session['user']['email'],
-            "score": session['score'],
+            
+            "email": email,
+            "score": s,
             "time": datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S")
         })
-        return jsonify({'message': 'success', 'score': session["score"]})       
+        return jsonify({'message': 'success', 'score': s})       
             
     except Exception as e:
         print(e)
@@ -69,20 +92,26 @@ def submit_quiz():
 
 
 def send_question():
+    global q
+    global s
+    global c
+    global cnt
+    global ans
+    global d
     try:
-        r = random.randrange(0, session['count'] - 1)
+        r = random.randrange(0, c)
         while True:
-            question = session['questions'][r]
+            question = q[r]
             r -= 1
-            if question['difficulty'] == session['difficulty']:
+            if question['difficulty'] == d:
                 break
 
-        session['questions'].remove(question)
+        q.remove(question)
         if question['type'] == 2:
-            session['answers'].append(question['answer'].lower())
+            ans.append(question['answer'].lower())
         else:
-            session['answers'].append(question['answer'])
-        session['count'] -= 1
+            ans.append(question['answer'])
+        c -= 1
 
         if question['type'] == 1:
             return jsonify({
@@ -104,15 +133,21 @@ def send_question():
 
 
 def next_difficulty(dec: bool):
-    d = sorted(set([q['difficulty'] for q in session['questions']]), reverse=dec)
-    current = session['difficulty']
+    global q
+    global s
+    global c
+    global cnt
+    global ans
+    global d
+    dif = sorted(set([qes['difficulty'] for qes in q]), reverse=dec)
+    current = d
     try:
-        for i in range(len(d)-1):
-            if d[i] == current:
+        for i in range(len(dif)-1):
+            if dif[i] == current:
+                return dif[i+1]
+            elif (current > dif[i-1] and current < dif[i+1]) or (current < dif[i-1] and current > dif[i+1]):
                 return d[i+1]
-            elif (current > d[i-1] and current < d[i+1]) or (current < d[i-1] and current > d[i+1]):
-                return d[i+1]
-        return d[len(d) - 1]
+        return dif[len(dif) - 1]
         
     except Exception as e:
-        return d[-1] if len(d) > 0 else 0
+        return dif[-1] if len(dif) > 0 else 0
