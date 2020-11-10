@@ -1,9 +1,10 @@
 const params = new URLSearchParams(window.location.search);
-let name = params.get("name");
+const name = localStorage.getItem('name')
 document.getElementById("name0").innerHTML = "Hi " + name + "!";
 document.getElementById("name1").innerHTML = "Hi " + name + "!";
-let email = params.get("email");
+const email = localStorage.getItem('email')
 console.log(email);
+console.log(name);
 // fetch("http://127.0.0.1:5000/quiz", {method: "GET"})
 //   .then(res => {
 //     if(res.status===500)
@@ -12,6 +13,14 @@ console.log(email);
 //       document.getElementById("score").innerHTML ="Your Score is"+`res.json().score`;
 //   })
 //   .catch(error => console.error('Error:', error));
+
+document.getElementById("logout").addEventListener("click",
+function(){
+  localStorage.clear();
+  window.location.replace(
+    "http://127.0.0.1:5501/frontend/index.html" 
+  );
+})
 
 $.ajax({
   url: "http://127.0.0.1:5000/category",
@@ -34,18 +43,18 @@ $.ajax({
       } else if (i % 5 == 4) {
         color = "#f3722c";
       }
-      // <p id="p">Tags:</p>
-      //               <div class="tags">
-      //                   <a href="#">pol</a>
-      //                   <a href="#">gk</a>
-      //                   <a href="#">iq</a>
-      //               </div>
+      
       output += `
        <div class="card d-flex flex-column p-4 col-12 m-2 category" style="background-color: ${color}">
                     <header class="card-header">
                         <h2>${data}</h2>
                     </header>
-                    
+                    <p id="p">Tags:</p>
+                    <div class="tags">
+                        <a href="#">pol</a>
+                        <a href="#">gk</a>
+                        <a href="#">iq</a>
+                    </div>
                 </div>
         `;
       i++;
@@ -66,13 +75,20 @@ fetch("http://127.0.0.1:5000/scores", {
 })
   .then((res) => res.json())
   .then((res) => {
-    if (res.score === 0)
-      document.getElementById("score").innerHTML =
-        "You have not played any quiz YET" + `<h4>Highest Score: 0</h4>`;
-    else
-      document.getElementById("score").innerHTML =
-        "Highest Score: " + res.score;
-  })
+    console.log(res)
+    if (res.score.length === 0){
+    document.getElementById("result").innerHTML ="You have not played any quiz YET";
+      document.getElementById("score").innerHTML = "Highest Score: 0";}
+    else{
+      var l=res.score.length;
+    document.getElementById("result").innerHTML ="You have played" + l+ "quizzes";
+    var total=0;
+for(let i=0;i<l;i++)
+total+=res.score[i];
+console.log(total)
+    document.getElementById("score").innerHTML = "Highest Score: "+total;
+  }
+    })
   .catch((err) => console.log(err));
 
 var chart = new Chartist.Pie(

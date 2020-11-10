@@ -25,15 +25,13 @@ function loginf(e) {
         //   console.log ( res.url+"/"+res.name)
         // window.location.href = res.url;
         window.location.replace(
-          "http://127.0.0.1:5501/frontend/home.html" +
-            "?name=" +
-            res.name +
-            "&email=" +
-            res.email
+          "http://127.0.0.1:5501/frontend/home.html" 
         );
+        localStorage.setItem('email', res.email);
+        localStorage.setItem('name',res.name)
         // console.log(res.message)
       } else {
-        if (res.status === 401)
+        if (res.message==="Invalid login Credentials")
           document.getElementById("content1").innerHTML =
             "Invalid login Credentials";
         else document.getElementById("content1").innerHTML = "Server Failed!";
