@@ -1,6 +1,11 @@
 # HACK-A-DUCK
 
 ## Team: 200:success
+# Team Members
+1. Neha Parmar
+2. Kunal Juneja
+3. Jonathan Dabreo
+4. Paras Dandwani
 
 # QuizMaster
 
