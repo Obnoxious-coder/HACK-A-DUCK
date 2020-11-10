@@ -7,7 +7,7 @@ function loginf(e) {
   let pwd = document.getElementById("login-password").value;
   // var formData=new FormData(document.getElementById("form0"))
 
-  fetch("http://127.0.0.1:5000/login", {
+  fetch("https://fathomless-bayou-31340.herokuapp.com/login", {
     method: "POST",
     headers: {
       Accept: "application/json,*/*",
@@ -47,7 +47,7 @@ function registerf(e) {
   console.log(name);
   console.log(email);
   console.log(pwd);
-  fetch("http://127.0.0.1:5000/register", {
+  fetch("https://fathomless-bayou-31340.herokuapp.com/register", {
     method: "post",
     headers: {
       Accept: "application/json",
