@@ -12,7 +12,7 @@
 //     // .then(res=>console.log(res))
 //   .catch(error => console.error('Error:', error));
 $.ajax({
-    url:'http://127.0.0.1:5000/leaderboard',
+    url:'https://fathomless-bayou-31340.herokuapp.com/leaderboard',
   success: (data) => {
          let output=""
     data.forEach(function (data) {
