@@ -17,7 +17,7 @@ def quiz():
             session["questions"] = questions
             session["score"] = 0
             session["count"] = len(questions)
-			session['cnt'] = min(10, len(questions))
+            session['cnt'] = min(10,len(questions))
             session['answers'] = []
             session['difficulty'] = min([element['difficulty'] for element in questions])
             return jsonify({'message': 'success', 'count': len(questions)}), 200
@@ -56,6 +56,7 @@ def submit_quiz():
     try:
        
         mongo.scores.insert_one({
+            "name":session['user']['name'],
             "email": session['user']['email'],
             "score": session['score'],
             "time": datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S")
@@ -87,7 +88,7 @@ def send_question():
             return jsonify({
                 'text':question["text"],
                 'type': 1,
-                'option':question["answer"]
+                'option':question["options"]
             })
         else:
             return jsonify({

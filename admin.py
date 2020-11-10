@@ -4,7 +4,7 @@ from app import mongo
 
 def admin():
     try:
-        if 1:
+        if session['user']['is_admin']:
             question = request.get_json()
             q_type = question['type']
             if q_type == 2:

@@ -21,10 +21,14 @@ def leader_board():
 	try:
 		data = mongo.scores.aggregate([{
 			"$group": {
-				"_id": "$email",
+				"_id": {
+    				"name" : "$name",
+    				"email" : "$email"
+  				},
 				"totalScores": {"$sum": "$score"}
 			}
-		}])
+		}
+		])
 
 		if data:
 			result = [d for d in sorted(data, key=operator.itemgetter('totalScores'), reverse=True)]
