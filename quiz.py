@@ -17,6 +17,7 @@ def quiz():
             session["questions"] = questions
             session["score"] = 0
             session["count"] = len(questions)
+			session['cnt'] = min(10, len(questions))
             session['answers'] = []
             session['difficulty'] = min([element['difficulty'] for element in questions])
             return jsonify({'message': 'success', 'count': len(questions)}), 200
@@ -30,7 +31,7 @@ def quiz():
 def quiz_id(qid):
     try:
         if request.method == 'GET':
-            if qid > 10:
+            if qid > session['cnt']:
                 return redirect('/quiz/submit')
 
             if (len(session["answers"]) + 1) == qid:

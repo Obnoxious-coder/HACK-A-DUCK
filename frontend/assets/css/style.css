@@ -304,3 +304,19 @@ h2 {
 h3 {
   margin-left: 50px;
 } */
+
+.fs-16 {
+  font-size: 16px !important;
+}
+
+.fs-24 {
+  font-size: 24px !important;
+}
+
+.color-green {
+  color: #02c39a !important;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
