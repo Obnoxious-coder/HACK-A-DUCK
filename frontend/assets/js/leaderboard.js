@@ -16,12 +16,13 @@ $.ajax({
   success: (data) => {
          let output=""
     data.forEach(function (data) {
+      console.log(data)
       output += `
         <div class="card border-primary mb-3" style="max-width: 25rem;">
-  <div class="card-header" >${data._id}</div>
+  <div class="card-header" >${data._id['name']}</div>
   <div class="card-body text-primary">
-    <h5 class="card-title">Name</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <h5 class="card-title">${data._id['email']}</h5>
+    <p class="card-text">User bio to build on the card title and make up the bulk of the card's content.</p>
     <div class="stats" style="display: flex;flex-wrap: wrap;margin: 10px;">
       <div>
         <div class="title" style="margin-left: 10px;margin-right: 10px;">Awards</div>
