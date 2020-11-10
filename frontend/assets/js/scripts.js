@@ -41,7 +41,7 @@ $.ajax({
       //                   <a href="#">iq</a>
       //               </div>
       output += `
-       <div class="card d-flex flex-column p-4 col-12 m-2" style="background-color: ${color}">
+       <div class="card d-flex flex-column p-4 col-12 m-2 category" style="background-color: ${color}">
                     <header class="card-header">
                         <h2>${data}</h2>
                     </header>
@@ -128,3 +128,8 @@ chart.on("draw", function (data) {
 // // });
 
 // })
+$(document).on("click", ".category", function (e) {
+  console.log($(this).find("h2").text());
+  var cat = $(this).find("h2").text();
+  window.location.href = `pages/quiz.html?cat=${cat}`;
+});
