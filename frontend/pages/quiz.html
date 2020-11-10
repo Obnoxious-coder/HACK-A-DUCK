@@ -49,20 +49,20 @@
           ><i class="fab fa-discourse" style="margin-right: 5px"></i
           >Categories</a
         >
-        <a href="#"
+        <a href=""
           ><i class="fas fa-chart-pie" style="margin-right: 5px"></i>Overview</a
         >
-        <a href="./pages/leaderboard.html"
+        <a href="./leaderboard.html"
           ><i class="far fa-calendar-alt" style="margin-right: 5px"></i
           >Leaderboard</a
         >
-        <a href="#"
+        <a href=""
           ><i class="far fa-comment-alt" style="margin-right: 5px"></i>Chat</a
         >
-        <a href="#"
+        <a href=""
           ><i class="fas fa-cog" style="margin-right: 5px"></i>Settings</a
         >
-        <h3 id="logout" style="color: grey;">Logout</h3>
+        <h3 id="logout" style="color: grey">Logout</h3>
       </div>
       <div class="upgrade p-2 rounded border border-primary">
         <p
@@ -102,8 +102,8 @@
         class="w-100 d-flex justify-content-between p-3 h3"
         style="display: none !important"
       >
-        <span> Score : <span id="liveScore">5</span> </span>
-        <span> 06:56 </span>
+        <!-- <span> Score : <span id="liveScore">5</span> </span>
+        <span> 06:56 </span> -->
       </div>
       <div id="quizRules" class="w-100 h2 text-center p-5">
         1. Each question contains 3 marks.<br /><br />
@@ -113,40 +113,46 @@
         </button>
       </div>
       <div id="quizBody" class="w-100 h2 text-center" style="display: none">
-        <span id="question">Who is known as the 'IRON MAN OF INDIA' ?</span>
-        <div class="w-100 row m-0">
+        <span id="question"></span>
+        <div class="w-100 row m-0" id="options" style="display: none">
           <div class="col-12 col-md-6">
             <div
               class="col-10 mx-auto my-2 border border-primary rounded cursorPointer option"
               id="option1"
-            >
-              Jamshedji Tata
-            </div>
+            ></div>
           </div>
           <div class="col-12 col-md-6">
             <div
               class="col-10 mx-auto my-2 border border-primary rounded cursorPointer option"
               id="option2"
-            >
-              Mahatma Gandhi
-            </div>
+            ></div>
           </div>
           <div class="col-12 col-md-6">
             <div
               class="col-10 mx-auto my-2 border border-primary rounded cursorPointer option"
               id="option3"
-            >
-              Sardar Vallabhbhai Patel
-            </div>
+            ></div>
           </div>
           <div class="col-12 col-md-6">
             <div
               class="col-10 mx-auto my-2 border border-primary rounded cursorPointer option"
               id="option4"
-            >
-              LalBahadur Shastri
-            </div>
+            ></div>
           </div>
+        </div>
+        <div class="w-100 row m-0 mt-5" id="input" style="display: none">
+          <input
+            type="text"
+            class="col-10 col-md-6 p-2 mx-auto"
+            placeholder="Your answer here..."
+          />
+        </div>
+        <div
+          class="w-100 row m-0 mt-5 pt-5 justify-content-center"
+          id="submitButton"
+          style="display: none"
+        >
+          <button class="btn btn-outline-primary">Submit</button>
         </div>
       </div>
       <div
@@ -155,7 +161,7 @@
         id="quizBottom"
       >
         <!-- <i class="fas fa-chevron-circle-left m-2" id="prevQuestion"></i> -->
-        <span id="currentQuestion">0</span>/5
+        <span id="currentQuestion">0</span>/<span id="maxQuestions"></span>
         <i class="fas fa-chevron-circle-right m-2" id="nextQuestion"></i>
       </div>
     </div>
@@ -163,14 +169,11 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script >
-      document.getElementById("logout").addEventListener("click",
-function(){
-  localStorage.clear();
-  window.location.replace(
-    "http://127.0.0.1:5501/frontend/index.html" 
-  );
-})
+    <script>
+      document.getElementById("logout").addEventListener("click", function () {
+        localStorage.clear();
+        window.location.replace("http://127.0.0.1:5501/frontend/index.html");
+      });
     </script>
     <script src="../assets/js/quiz.js"></script>
   </body>
