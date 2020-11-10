@@ -79,7 +79,7 @@ def send_question():
         if question['type'] == 2:
             session['answers'].append(question['answer'].lower())
         else:
-            session['answers'].append(question['answer']['correct'])
+            session['answers'].append(question['answer'])
         session['count'] -= 1
 
         if question['type'] == 1:
