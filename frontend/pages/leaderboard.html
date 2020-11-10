@@ -23,12 +23,14 @@
       <div id="mySidenav" class="sidenav d-none d-md-flex flex-column justify-content-around align-items-center ">
         <a href="#" class="text-right w-100" id="close"><i class="fas fa-times-circle"></i></a>
         <div class="navbar">
-          <a href="../index.html"><i class="fab fa-discourse" style="margin-right: 5px"></i>Categories</a>
+          <a href="../home.html"><i class="fab fa-discourse" style="margin-right: 5px"></i>Categories</a>
           <a href="#"><i class="fas fa-chart-pie" style="margin-right: 5px"></i>Overview</a>
           <a href="#"><i class="far fa-calendar-alt" style="margin-right: 5px"></i>Leaderboard</a>
           <a href="#"><i class="far fa-comment-alt" style="margin-right: 5px"></i>Chat</a>
           <a href="#"><i class="fas fa-cog" style="margin-right: 5px"></i>Settings</a>
+          <h3 id="logout" style="color: grey;">Logout</h3>
         </div>
+
         <div class="upgrade p-2 rounded">
           <p style="font-weight: bold; font-size: medium; color: white;cursor: pointer;">
             Upgrade<br />
@@ -49,8 +51,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
  <script src="../assets/js/nav.js"></script>
+ <script src="../assets/js/scripts.js"></script>
   <script src="../assets/js/leaderboard.js"></script>
  <script src="../assets/js/particles.js"></script>
+ <script>document.getElementById("logout").addEventListener("click",
+  function(){
+    localStorage.clear();
+    window.location.replace(
+      "http://127.0.0.1:5501/frontend/index.html" 
+    );
+  })</script>
 <script src="../assets/js/app.js"></script>
   </body>
 </html>
