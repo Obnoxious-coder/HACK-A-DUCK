@@ -1,4 +1,3 @@
-const params = new URLSearchParams(window.location.search);
 const name = localStorage.getItem('name')
 document.getElementById("name0").innerHTML = "Hi " + name + "!";
 document.getElementById("name1").innerHTML = "Hi " + name + "!";
