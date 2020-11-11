@@ -35,7 +35,7 @@ def login():
             user['_id'] = str(user['_id'])
             session["user"] = user
             session.modified=True
-            return jsonify({'message': 'success','url':'http://127.0.0.1:5501/frontend/index.html','name':user['name'],"email":user['email']}), 200
+            return jsonify({'message': 'success','url':'http://127.0.0.1:5501/frontend/index.html','name':user['name'],"email":user['email'],"isadmin":user['is_admin']}), 200
         else:
             return jsonify({"message": "Invalid login Credentials"}), 401
     except Exception as e:

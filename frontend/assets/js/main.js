@@ -6,7 +6,8 @@ function loginf(e) {
   let email = document.getElementById("login-email").value;
   let pwd = document.getElementById("login-password").value;
   // var formData=new FormData(document.getElementById("form0"))
-
+  let checked = document.getElementById("check").checked;
+  console.log(checked);
   fetch("https://powerful-reaches-87690.herokuapp.com/login", {
     method: "POST",
     headers: {
@@ -21,7 +22,16 @@ function loginf(e) {
     .then((res) => res.json())
     .then((res) => {
       console.log(res);
-      if (res.message == "success") {
+      if (res.isadmin == true && checked ) {
+         window.location.replace(
+          "https://obnoxious-coder.github.io/HACK-A-DUCK/frontend/pages/admin.html"
+        );
+      }
+      else if (res.isadmin == false && checked) {
+           document.getElementById("content1").innerHTML =
+            "Invalid admin Credentials";
+      }
+      else if (res.message == "success") {
         //   console.log ( res.url+"/"+res.name)
         // window.location.href = res.url;
         window.location.replace(
