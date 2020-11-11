@@ -19,7 +19,7 @@ document.getElementById("logout").addEventListener("click", function () {
 });
 
 $.ajax({
-  url: "https://fathomless-bayou-31340.herokuapp.com/category",
+  url: "https://powerful-reaches-87690.herokuapp.com/category",
   success: (data) => {
     var i = 0;
     var color = "";
@@ -59,7 +59,7 @@ $.ajax({
   },
 });
 
-fetch("https://fathomless-bayou-31340.herokuapp.com/scores", {
+fetch("https://powerful-reaches-87690.herokuapp.com/scores", {
   method: "POST",
   headers: {
     Accept: "application/json,*/*",
