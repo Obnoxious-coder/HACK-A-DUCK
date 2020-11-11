@@ -25,13 +25,13 @@ function loginf(e) {
         //   console.log ( res.url+"/"+res.name)
         // window.location.href = res.url;
         window.location.replace(
-          "http://127.0.0.1:5501/frontend/home.html" 
+          "https://obnoxious-coder.github.io/HACK-A-DUCK/frontend/home.html"
         );
-        localStorage.setItem('email', res.email);
-        localStorage.setItem('name',res.name)
+        localStorage.setItem("email", res.email);
+        localStorage.setItem("name", res.name);
         // console.log(res.message)
       } else {
-        if (res.message==="Invalid login Credentials")
+        if (res.message === "Invalid login Credentials")
           document.getElementById("content1").innerHTML =
             "Invalid login Credentials";
         else document.getElementById("content1").innerHTML = "Server Failed!";
