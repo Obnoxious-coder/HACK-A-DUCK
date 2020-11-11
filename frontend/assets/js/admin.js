@@ -4,7 +4,7 @@ function dropdown() {
     `<option value="0">---Please Select a Category---</option>`
   );
   $.ajax({
-    url: "http://127.0.0.1:5000/category",
+    url: "https://powerful-reaches-87690.herokuapp.com/category",
     success: (res) => {
       // console.log(res[0]["_id"]);
       res.forEach((cat) => {
@@ -35,7 +35,7 @@ $("#addNewCategoryButton").on("click", () => {
       headers: {
         "Content-Type": "application/json",
       },
-      url: "http://127.0.0.1:5000/category",
+      url: "https://powerful-reaches-87690.herokuapp.com/category",
       dataType: "json",
       success: () => {
         $("#addCategoryLoader").hide();
@@ -173,7 +173,7 @@ function sumbitQuestion(data) {
     },
     dataType: "json",
     data: JSON.stringify(data),
-    url: "http://127.0.0.1:5000/admin",
+    url: "https://powerful-reaches-87690.herokuapp.com/admin",
     success: (res) => {
       console.log(res);
       toastr.success("Successfully submitted question!");

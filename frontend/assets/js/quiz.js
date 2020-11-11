@@ -45,7 +45,7 @@ $(function () {
       headers: {
         "Content-Type": "application/json",
       },
-      url: "http://127.0.0.1:5000/quiz",
+      url: "https://powerful-reaches-87690.herokuapp.com/quiz",
       dataType: "json",
       success: (res) => {
         numberOfQuestions = res.count > 10 ? 10 : res.count;
@@ -109,7 +109,7 @@ function nextQuestion(id) {
   // sessionStorage.setItem("answers", id);
   $.ajax({
     method: `GET`,
-    url: `http://127.0.0.1:5000/quiz/${id}`,
+    url: `https://powerful-reaches-87690.herokuapp.com/quiz/${id}`,
     success: (res) => {
       console.log(res);
       question = res.text;
@@ -121,7 +121,7 @@ function nextQuestion(id) {
       console.log(e);
     },
   });
-  // fetch(`http://127.0.0.1:5000/quiz/${id}`, {
+  // fetch(`https://powerful-reaches-87690.herokuapp.com/quiz/${id}`, {
   //   method: "GET",
   //   credentials: "same-origin",
   //   mode: "cors",
@@ -152,7 +152,7 @@ function submitQuestion(id, ans) {
       "Content-Type": "application/json",
     },
     dataType: "json",
-    url: `http://127.0.0.1:5000/quiz/${id - 1}`,
+    url: `https://powerful-reaches-87690.herokuapp.com/quiz/${id - 1}`,
     success: (res) => {
       console.log(res);
       nextQuestion(id);
@@ -167,7 +167,7 @@ function submitQuiz(id, ans) {
       "Content-Type": "application/json",
     },
     dataType: "json",
-    url: `http://127.0.0.1:5000/quiz/${id - 1}`,
+    url: `https://powerful-reaches-87690.herokuapp.com/quiz/${id - 1}`,
     success: (res) => {
       // console.log(res);
       console.log(localStorage.getItem("email"));
@@ -178,7 +178,7 @@ function submitQuiz(id, ans) {
           "Content-Type": "application/json",
         },
         dataType: "json",
-        url: `http://127.0.0.1:5000/quiz/submit`,
+        url: `https://powerful-reaches-87690.herokuapp.com/quiz/submit`,
         success: (res) => {
           console.log(res);
           alert(`You Scored ${res.score}`);
