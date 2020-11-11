@@ -49,7 +49,7 @@ def quiz_id(qid):
     try:
         if request.method == 'GET':
             if qid > cnt:
-                return redirect('/quiz/submit')
+                return jsonify({'message': 'Max '}), 401
 
             if (len(ans) + 1) == qid:
                 return send_question()
@@ -99,7 +99,9 @@ def send_question():
     global ans
     global d
     try:
-        r = random.randrange(0, c - 1)
+
+        r = random.randrange(0, c)
+
         while True:
             question = q[r]
             r -= 1

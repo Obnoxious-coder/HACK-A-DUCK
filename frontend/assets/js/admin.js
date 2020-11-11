@@ -176,6 +176,13 @@ function sumbitQuestion(data) {
     url: "http://127.0.0.1:5000/admin",
     success: (res) => {
       console.log(res);
+      toastr.success("Successfully submitted question!");
+      $("#categoryDropdown").prop("selectedIndex", 0);
+      $("#questionText").val("");
+      $("#typeDropdown").prop("selectedIndex", 0);
+      $("#correctAnswer input").val("");
+      $("#difficultyLevel input").val("");
+      $(".option").val("");
     },
   });
 }

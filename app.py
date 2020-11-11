@@ -7,11 +7,12 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '7a92db426dc5bf58777aa19acdaa2044'
 bcrypt = Bcrypt(app)
 CORS(app)
-cors=CORS(app,resources={
-    r"/*":{
-        "origins":"*"
-    }
-})
+# CORS(app, supports_credentials=True)
+# cors=CORS(app,supports_credentials=True,resources={
+#     r"/*":{
+#         "origins":"*"
+#     }
+# })
 
 client = pymongo.MongoClient("mongodb+srv://Jonathan:" + urllib.parse.quote("Jonathan@123") +
                              "@cluster0.naqqj.mongodb.net/QUIZAPP?retryWrites=true&w=majority")

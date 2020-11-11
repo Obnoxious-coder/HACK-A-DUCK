@@ -22,7 +22,7 @@ function(){
 })
 
 $.ajax({
-  url: "http://127.0.0.1:5000/category",
+  url: "https://fathomless-bayou-31340.herokuapp.com/category",
   success: (data) => {
     var i = 0;
     var color = "";
@@ -62,7 +62,7 @@ $.ajax({
   },
 });
 
-fetch("http://127.0.0.1:5000/scores", {
+fetch("https://fathomless-bayou-31340.herokuapp.com/scores", {
   method: "POST",
   headers: {
     Accept: "application/json,*/*",

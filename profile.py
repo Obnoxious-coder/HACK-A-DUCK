@@ -6,10 +6,10 @@ import operator
 def profile():
 	try:
 		user = mongo.users.find_one({'email': session['user']['email']})
+		session.modified=True
 		if user:
 			user['_id'] = str(user['_id'])
 			return jsonify({"name":user["name"],"email":user["email"]}), 200
-
 		return jsonify({'message': 'User Not Found'}), 404
 	
 	except Exception as e:
