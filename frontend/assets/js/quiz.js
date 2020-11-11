@@ -48,7 +48,7 @@ $(function () {
       url: "http://127.0.0.1:5000/quiz",
       dataType: "json",
       success: (res) => {
-        numberOfQuestions = res.count;
+        numberOfQuestions = res.count > 10 ? 10 : res.count;
         $("#maxQuestions").text(numberOfQuestions);
         nextQuestion(i);
       },
