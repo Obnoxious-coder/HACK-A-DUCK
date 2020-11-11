@@ -99,7 +99,9 @@ def send_question():
     global ans
     global d
     try:
+
         r = random.randrange(0, c)
+
         while True:
             question = q[r]
             r -= 1
