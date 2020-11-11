@@ -1,7 +1,7 @@
-const name = localStorage.getItem('name')
+const name = localStorage.getItem("name");
 document.getElementById("name0").innerHTML = "Hi " + name + "!";
 document.getElementById("name1").innerHTML = "Hi " + name + "!";
-const email = localStorage.getItem('email')
+const email = localStorage.getItem("email");
 console.log(email);
 console.log(name);
 // fetch("http://127.0.0.1:5000/quiz", {method: "GET"})
@@ -13,13 +13,10 @@ console.log(name);
 //   })
 //   .catch(error => console.error('Error:', error));
 
-document.getElementById("logout").addEventListener("click",
-function(){
+document.getElementById("logout").addEventListener("click", function () {
   localStorage.clear();
-  window.location.replace(
-    "http://127.0.0.1:5501/frontend/index.html" 
-  );
-})
+  window.location.replace("http://127.0.0.1:5501/frontend/index.html");
+});
 
 $.ajax({
   url: "http://127.0.0.1:5000/category",
@@ -42,7 +39,7 @@ $.ajax({
       } else if (i % 5 == 4) {
         color = "#f3722c";
       }
-      
+
       output += `
        <div class="card d-flex flex-column p-4 col-12 m-2 category" style="background-color: ${color}">
                     <header class="card-header">
@@ -74,20 +71,23 @@ fetch("http://127.0.0.1:5000/scores", {
 })
   .then((res) => res.json())
   .then((res) => {
-    console.log(res)
-    if (res.score.length === 0){
-    document.getElementById("result").innerHTML ="You have not played any quiz YET";
-      document.getElementById("score").innerHTML = "Highest Score: 0";}
-    else{
-      var l=res.score.length;
-    document.getElementById("result").innerHTML ="You have played" + l+ "quizzes";
-    var total=0;
-for(let i=0;i<l;i++)
-total+=res.score[i];
-console.log(total)
-    document.getElementById("score").innerHTML = "Highest Score: "+total;
-  }
-    })
+    console.log(res);
+    if (res.score.length === 0) {
+      document.getElementById("result").innerHTML =
+        "You have not played any quiz YET";
+      document.getElementById("score").innerHTML = "Highest Score: 0";
+    } else {
+      var l = res.score.length;
+      document.getElementById("result").innerHTML =
+        "You have played " + l + " quizzes";
+      var total = 0;
+      for (let i = 0; i < l; i++) total += res.score[i].score;
+      console.log(total);
+      document.getElementById("score").innerHTML = "Highest Score: " + total;
+      // console.log(res.score.length);
+      $("#RecentScore").text(`Recent Score : ${res.score[total - 1].score}`);
+    }
+  })
   .catch((err) => console.log(err));
 
 var chart = new Chartist.Pie(

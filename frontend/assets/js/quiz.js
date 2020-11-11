@@ -181,6 +181,8 @@ function submitQuiz(id, ans) {
         url: `http://127.0.0.1:5000/quiz/submit`,
         success: (res) => {
           console.log(res);
+          alert(`You Scored ${res.score}`);
+          window.location.replace("http://127.0.0.1:5501/frontend/home.html");
         },
       });
     },
