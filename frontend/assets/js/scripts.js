@@ -83,7 +83,7 @@ fetch("https://powerful-reaches-87690.herokuapp.com/scores", {
       var total = 0;
       for (let i = 0; i < l; i++) total += res.score[i].score;
       console.log(total);
-      document.getElementById("score").innerHTML = "Highest Score: " + total;
+      document.getElementById("score").innerHTML = "Total Score: " + total;
       // console.log(res.score.length);
       $("#RecentScore").text(`Recent Score : ${res.score[total - 1].score}`);
     }
