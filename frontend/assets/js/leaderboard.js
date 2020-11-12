@@ -12,7 +12,7 @@
 //     // .then(res=>console.log(res))
 //   .catch(error => console.error('Error:', error));
 $.ajax({
-  url: "https://powerful-reaches-87690.herokuapp.com/leaderboard",
+  url: "http://127.0.0.1:5000/leaderboard",
   success: (data) => {
     let output = "";
     data.forEach(function (data) {

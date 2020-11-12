@@ -19,7 +19,7 @@ document.getElementById("logout").addEventListener("click", function () {
 });
 
 $.ajax({
-  url: "https://powerful-reaches-87690.herokuapp.com/category",
+  url: "http://127.0.0.1:5000/category",
   success: (data) => {
     var i = 0;
     var color = "";
@@ -59,7 +59,7 @@ $.ajax({
   },
 });
 
-fetch("https://powerful-reaches-87690.herokuapp.com/scores", {
+fetch("http://127.0.0.1:5000/scores", {
   method: "POST",
   headers: {
     Accept: "application/json,*/*",
@@ -85,7 +85,7 @@ fetch("https://powerful-reaches-87690.herokuapp.com/scores", {
       console.log(total);
       document.getElementById("score").innerHTML = "Total Score: " + total;
       // console.log(res.score.length);
-      $("#RecentScore").text(`Recent Score : ${res.score[total - 1].score}`);
+      $("#RecentScore").text(`Recent Score : ${res.score[l - 1].score}`);
     }
   })
   .catch((err) => console.log(err));
