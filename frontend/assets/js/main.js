@@ -8,7 +8,7 @@ function loginf(e) {
   // var formData=new FormData(document.getElementById("form0"))
   let checked = document.getElementById("check").checked;
   console.log(checked);
-  fetch("https://powerful-reaches-87690.herokuapp.com/login", {
+  fetch("http://127.0.0.1:5000/login", {
     method: "POST",
     headers: {
       Accept: "application/json,*/*",
@@ -22,21 +22,17 @@ function loginf(e) {
     .then((res) => res.json())
     .then((res) => {
       console.log(res);
-      if (res.isadmin == true && checked ) {
-         window.location.replace(
-          "https://obnoxious-coder.github.io/HACK-A-DUCK/frontend/pages/admin.html"
+      if (res.isadmin == true && checked) {
+        window.location.replace(
+          "http://127.0.0.1:5501/frontend/pages/admin.html"
         );
-      }
-      else if (res.isadmin == false && checked) {
-           document.getElementById("content1").innerHTML =
-            "Invalid admin Credentials";
-      }
-      else if (res.message == "success") {
+      } else if (res.isadmin == false && checked) {
+        document.getElementById("content1").innerHTML =
+          "Invalid admin Credentials";
+      } else if (res.message == "success") {
         //   console.log ( res.url+"/"+res.name)
         // window.location.href = res.url;
-        window.location.replace(
-          "https://obnoxious-coder.github.io/HACK-A-DUCK/frontend/home.html"
-        );
+        window.location.replace("http://127.0.0.1:5501/frontend/home.html");
         localStorage.setItem("email", res.email);
         localStorage.setItem("name", res.name);
         // console.log(res.message)
@@ -57,7 +53,7 @@ function registerf(e) {
   console.log(name);
   console.log(email);
   console.log(pwd);
-  fetch("https://powerful-reaches-87690.herokuapp.com/register", {
+  fetch("http://127.0.0.1:5000/register", {
     method: "post",
     headers: {
       Accept: "application/json",
